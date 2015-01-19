@@ -19,7 +19,7 @@ function Sprite (options){
 Sprite.prototype.draw = function (context, frame, x, y, flip){
 	if(flip){
 		context.save();
-		context.setTransform(-cnst.pixelratio, 0, 0, cnst.pixelratio, 80, 0);
+		context.setTransform(-cnst.pixelratio, 0, 0, cnst.pixelratio, 80*cnst.pixelratio, 0);
 		x = - x;
 	}
 	var s = this,
