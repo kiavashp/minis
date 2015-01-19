@@ -2,6 +2,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
+<script>
+window.mobile = 'standalone' in navigator;
+if(mobile) window['touch-ctrl'].style.display = 'block';
+</script>
 <script src="./js/touch.js"></script>
 
 <script src="./js/util.js"></script>
@@ -30,5 +34,15 @@ user.warn = function (){
 <style>
 body {overflow:hidden;}
 canvas {position:absolute;left:0;top:0;}
+#touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
+#touch-ctrl .ctrl {float:left;margin:0 10px;width:40px;height:40px;background:rgba(0,0,0,0.2);}
 </style>
+
 <canvas id="can"></canvas>
+
+<div id="touch-ctrl" style="display:none;">
+	<div class="ctrl"></div>
+	<div class="ctrl"></div>
+	
+	<div class="ctrl" style="float:right;"></div>
+</div>
