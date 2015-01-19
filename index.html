@@ -4,7 +4,9 @@
 
 <script>
 window.mobile = 'standalone' in navigator;
-if(mobile) window['touch-ctrl'].style.display = 'block';
+document.addEventListener('DOMContentLoaded', function (){
+	if(mobile) window['touch-ctrl'].style.display = 'block';
+});
 </script>
 <script src="./js/touch.js"></script>
 
