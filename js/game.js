@@ -88,10 +88,10 @@ g.on('resize', function (dontdraw){
 w.on('keydown', function (e){ g.keys[e.keyCode] = Date.now() });
 w.on('keyup', function (e){ g.keys[e.keyCode] = false });
 function eleKeySim (el, keycode){
-	el.addEventListener('keydown', function (){
+	el.addEventListener('mousedown', function (){
 		g.keys[keycode] = Date.now();
 	});
-	el.addEventListener('keyup', function (){
+	el.addEventListener('mouseup', function (){
 		g.keys[keycode] = false;
 	});
 };
