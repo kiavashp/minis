@@ -38,13 +38,14 @@ body {overflow:hidden;}
 canvas {position:absolute;left:0;top:0;}
 #touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
 #touch-ctrl .ctrl {float:left;margin:0 10px;width:40px;height:40px;background:rgba(0,0,0,0.2);}
+#touch-ctrl .ctrl:active {background:rgba(0,0,0,0.5);}
 </style>
 
 <canvas id="can"></canvas>
 
 <div id="touch-ctrl" style="display:none;">
-	<div class="ctrl"></div>
-	<div class="ctrl"></div>
+	<div class="ctrl" onload="eleKeySim(this, 37)"></div>
+	<div class="ctrl" onload="eleKeySim(this, 39)"></div>
 	
-	<div class="ctrl" style="float:right;"></div>
+	<div class="ctrl" onload="eleKeySim(this, 38)" style="float:right;"></div>
 </div>
