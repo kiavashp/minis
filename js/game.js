@@ -7,10 +7,10 @@ g.keys = {};
 
 g.w = 3000;
 g.h = 2000;
-g.frame = { x: 0, y: 0, w: 0, h: 0, pad: 160 };
+g.frame = { x: 0, y: 0, w: 0, h: 0, pad: 100 };
 
 g.gravity = 1;
-g.groundheight = 100;
+g.groundheight = 70;
 g.ground = innerHeight - g.groundheight;
 g.blocks = [];
 
@@ -58,7 +58,7 @@ g.on('update', function (){
 	for(a=0;a<game.actors.length;a++) game.actors[a].update();
 	game.lastupdate = now;
 	game.emit('draw');
-}); 
+});
 
 g.on('draw', function (){
 	var a, game = this;
