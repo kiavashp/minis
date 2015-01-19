@@ -2,18 +2,17 @@
 
 function Actor (o){
 	if(!(this instanceof Actor))
-		return new Actor(x, y, w, h);
+		return new Actor(o);
 	o = typeof o === 'object' ? o : {};
 	var actor = this;
 	actor.life = o.life || 100;
-	actor.movespeed = o.movespeed || 9;
-	actor.fallspeed = o.fallspeed || 1;
-	actor.momentumy = 0;
+	actor.speed = { x: 0, y: 0 };
+	actor.movespeed = o.movespeed || { x: 5, y: 15 };
 	actor.inair = false;
-	actor.x = o.x || 0;
+	actor.x = o.x || 40;
 	actor.y = o.y || 0;
-	actor.w = o.w || 9;
-	actor.h = o.h || 9;
+	actor.w = o.w || 80;
+	actor.h = o.h || 100;
 	if(typeof actor.sprite !== 'undefined'){
 		actor.sprite = o.sprite instanceof Sprite ? o.sprite
 			: new Sprite(o.sprite +'', null, actor.w, actor.h);
@@ -31,7 +30,7 @@ Actor.prototype.bind = function (ctx){
 
 Actor.prototype.jump = function (){
 	var actor = this;
-	if(actor.nair) return false;
+	if(actor.inair) return false;
 	actor.inair = true;
 	actor.momentumy = -actor.movespeed;
 }

@@ -4,30 +4,54 @@ function Player (options, game){
 	if(!(this instanceof Player))
 		return new Player(options, game);
 	
-	Actor.call(this);
+	Actor.call(this, options, game);
 	
 	var player = this,
 		o = typeof options === 'object' ? options : {};
 	
 	player.game = game || o.game;
+	/*
 	player.x = o.x || 40;
 	player.y = o.y || 0;
-	player.w = o.w || 80 || 40;
-	player.h = o.h || 100 || 40;
+	player.w = o.w || 80;
+	player.h = o.h || 100;
+	*/
+	/*
 	player.speed = { x: 0, y: 0};
 	player.movespeed = o.movespeed || { x: 5, y: 15 };
+	*/
 //	player.color = '#aa99bb';
 	player.moving = false;
 	player.flip = false;
 	player._frame = 0;
 	player.frame = 0;
 	player.lastupdate = Date.now();
-	player.inair = false;
+//	player.inair = false;
+	
+	player.items = {};
+	player.armor = {
+		head: null,
+		body: null,
+		
+		full_body: null,
+		
+		left_leg: null,
+		right_leg: null,
+		
+		left_arm: null,
+		right_arm: null,
+		
+		left_hand: null,
+		right_hand: null,
+		
+		left_wield: null,
+		right_wield: null,
+		
+		back: null
+	}
 }
 
 util.inherits(Player, Actor);
-
-var ref = false;
 
 Player.prototype.update = function (){
 	var player = this,
@@ -52,8 +76,8 @@ Player.prototype.update = function (){
 	player.frame = player._frame | 0;
 	
 	// x & y position
-	player.x += ref ? player.speed.x : player.speed.x * (timeoff / 16);
-	player.y -= ref ? player.speed.y : player.speed.y * (timeoff / 16);
+	player.x += player.speed.x * (timeoff / 16);
+	player.y -= player.speed.y * (timeoff / 16);
 	
 	var newx = player.x;
 	
@@ -84,8 +108,8 @@ Player.prototype.draw = function (){
 		flip = player.flip;
 	
 	if(player.inair){
-		if(player.speed.y < 2) player.frame = 1;
-		else player.frame = 0;
+		player.frame = player.speed.y < 2 
+			? ( game.ground - player.y < 40 ? 2 : 1 ) : 0;
 		
 		game.sprites['blue_fall_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_fall_leg_left'].draw(_, player.frame, x, y, flip);
@@ -120,4 +144,29 @@ Player.prototype.draw = function (){
 	_.fillRect(game.frame.x + player.x | 0, game.frame.y + player.y - player.h | 0,
 		player.w, player.h);
 	*/
+}
+
+Player.prototype.equipItem = function (item){
+	var self = this,
+		it = typeof item === 'object' ? item : {id: item +''};
+	
+	if(!item) return false;
+	
+}
+
+Player.prototype.addItem = function (item, quantity){
+	var self = this,
+		it = typeof item === 'object' ? item : g.items[item],
+		quantity = (typeof item == 'object' ? item.quantity : quantity) || 1;
+	
+	if(!it){
+		user.warn('invalid item: '+ JSON.stringify(item));
+		return;
+	}
+	if(!(item.id in self.items)){
+		self.items[item.id] = 0;
+	}
+	self.items[item.id] += quantity;
+	
+	user.notify(quantity +' '+ it.name +'(s) added to inventory');
 }
