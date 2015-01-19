@@ -6,6 +6,9 @@
 window.mobile = 'standalone' in navigator;
 document.addEventListener('DOMContentLoaded', function (){
 	if(mobile) window['touch-ctrl'].style.display = 'block';
+	eleKeySim(window['touch-left-ctrl'], 37);
+	eleKeySim(window['touch-right-ctrl'], 39);
+	eleKeySim(window['touch-up-ctrl'], 38);
 });
 </script>
 <script src="./js/touch.js"></script>
@@ -44,8 +47,8 @@ canvas {position:absolute;left:0;top:0;}
 <canvas id="can"></canvas>
 
 <div id="touch-ctrl" style="display:none;">
-	<div class="ctrl" onload="eleKeySim(this, 37)"></div>
-	<div class="ctrl" onload="eleKeySim(this, 39)"></div>
+	<div class="ctrl" id="touch-left-ctrl"></div>
+	<div class="ctrl" id="touch-right-ctrl"></div>
 	
-	<div class="ctrl" onload="eleKeySim(this, 38)" style="float:right;"></div>
+	<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
 </div>
