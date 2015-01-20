@@ -5,7 +5,7 @@
 <script>
 window.mobile = 'standalone' in navigator;
 document.addEventListener('DOMContentLoaded', function (){
-	if(!mobile) window['touch-ctrl'].style.display = 'block';
+	if(mobile) window['touch-ctrl'].style.display = 'block';
 	eleKeySim(window['touch-left-ctrl'], 37);
 	eleKeySim(window['touch-right-ctrl'], 39);
 	eleKeySim(window['touch-up-ctrl'], 38);
