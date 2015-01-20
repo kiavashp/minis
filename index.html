@@ -5,7 +5,7 @@
 <script>
 window.mobile = 'standalone' in navigator;
 document.addEventListener('DOMContentLoaded', function (){
-	if(mobile) window['touch-ctrl'].style.display = 'block';
+	if(!mobile) window['touch-ctrl'].style.display = 'block';
 	eleKeySim(window['touch-left-ctrl'], 37);
 	eleKeySim(window['touch-right-ctrl'], 39);
 	eleKeySim(window['touch-up-ctrl'], 38);
@@ -40,8 +40,13 @@ user.warn = function (){
 body {overflow:hidden;}
 canvas {position:absolute;left:0;top:0;}
 #touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
-#touch-ctrl .ctrl {float:left;margin:0 10px;width:40px;height:40px;background:rgba(0,0,0,0.2);}
-#touch-ctrl .ctrl:active {background:rgba(0,0,0,0.5);}
+#touch-ctrl .ctrl {
+float:left;margin:0 10px;width:40px;height:40px;
+background-image:url(./assets/interface/ctrl-move.png);background-size:auto 80px;}
+#touch-ctrl .ctrl:active {background-position-y:40px;}
+#touch-left-ctrl.ctrl {width:50px;background-position-x:0px;}
+#touch-right-ctrl.ctrl {width:50px;background-position-x:90px;}
+#touch-up-ctrl.ctrl {background-position-x:180px;}
 </style>
 
 <canvas id="can"></canvas>
