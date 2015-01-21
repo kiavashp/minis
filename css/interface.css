@@ -11,6 +11,7 @@ background:#ffffff;
 #player-stats .p-stat {
 display:block;
 position:relative;
+line-height:26px;
 height:26px;
 margin-bottom:5px;
 background:#888888;
@@ -27,7 +28,6 @@ position:absolute;
 left:0;
 top:0;
 right:0;
-line-height:26px;
 text-align:center;
 }
 #player-stats .p-stat .bar {
@@ -40,6 +40,17 @@ background:#343842;
 }
 #player-stats .p-stat.stat-hp .bar {
 background:#7f2222;
+}
+
+#player-stats {
+width:140px;
+padding:3px;
+}
+#player-stats .p-stat {
+font-size:12px;
+line-height:22px;
+height:22px;
+margin-bottom:3px;
 }
 /* END Player Stats */
 
