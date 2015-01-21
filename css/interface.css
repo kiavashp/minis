@@ -42,15 +42,19 @@ background:#343842;
 background:#7f2222;
 }
 
-#player-stats {
+/* mobile player stats */
+body.mobile #player-stats {
 width:140px;
 padding:3px;
 }
-#player-stats .p-stat {
+body.mobile #player-stats .p-stat {
 font-size:12px;
 line-height:22px;
 height:22px;
 margin-bottom:3px;
+}
+body.mobile #player-stats .p-stat:last-child {
+margin-bottom:0;
 }
 /* END Player Stats */
 
