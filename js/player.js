@@ -11,17 +11,17 @@ function Player (options, game){
 	
 	player.items = {};
 	player.armor = {
-		head: null || g.items['White Bandana'],
-		chest: null || g.items['Dark Plate'],
+		head: null, // || g.items['White Bandana'],
+		chest: null, // || g.items['Dark Plate'],
 		
 		left_leg: null,
 		right_leg: null,
 		
 		left_arm: null,
-		right_arm: null || g.items['Dark Shoulder'],
+		right_arm: null, // || g.items['Dark Shoulder'],
 		
-		left_wield: null || g.items['Red Mage Book'],
-		right_wield: null || g.items['Steel Dagger'],
+		left_wield: null, // || g.items['Red Mage Book'],
+		right_wield: null, // || g.items['Steel Dagger'],
 		
 		back: null
 	}
@@ -93,126 +93,94 @@ Player.prototype.draw = function (){
 	
 	// player arm_left
 	game.sprites['blue_'+ sequence +'_arm_left'].draw(_, player.frame, x, y, flip);
-	
 	// player leg_left
 	game.sprites['blue_'+ sequence +'_leg_left'].draw(_, player.frame, x, y, flip);
-	
 	// armor right_wield
 	if(player.armor.left_wield)
 		player.armor.left_wield.draw(_, sequence, player.frame, x, y, flip);
-	
 	// player chest
 	game.sprites['blue_'+ sequence +'_chest'].draw(_, player.frame, x, y, flip);
-	
 	// armor chest
 	if(player.armor.chest)
 		player.armor.chest.draw(_, sequence, player.frame, x, y, flip);
-	
 	// player leg_right
 	game.sprites['blue_'+ sequence +'_leg_right'].draw(_, player.frame, x, y, flip);
-	
 	// player head
 	game.sprites['blue_'+ sequence +'_head'].draw(_, player.frame, x, y, flip);
-	
 	// armor head
 	if(player.armor.head)
 		player.armor.head.draw(_, sequence, player.frame, x, y, flip);
-	
 	// armor right_wield
 	if(player.armor.right_wield)
 		player.armor.right_wield.draw(_, sequence, player.frame, x, y, flip);
-	
 	// player arm_right
 	game.sprites['blue_'+ sequence +'_arm_right'].draw(_, player.frame, x, y, flip);
-	
 	// armor arm_right
 	if(player.armor.right_arm)
 		player.armor.right_arm.draw(_, sequence, player.frame, x, y, flip);
 	
-	/*
-	if(player.inair){
-		player.frame = player.speed.y < 2 
-			? ( game.ground - player.y < 40 ? 2 : 1 ) : 0;
-		
-		game.sprites['blue_fall_arm_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_fall_leg_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['red_fall_book'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_fall_chest'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_fall_chest'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_fall_leg_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_fall_head'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['white_fall_bandana'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['steel_fall_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_fall_arm_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_fall_arm_right'].draw(_, player.frame, x, y, flip);
-	}else if(player.moving){
-		game.sprites['blue_run_arm_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_run_leg_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['red_run_book'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_run_chest'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_run_chest'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_run_leg_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_run_head'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['white_run_bandana'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['steel_run_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_run_arm_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_run_arm_right'].draw(_, player.frame, x, y, flip);
-	}else{
-		player.frame = (player.frame / 4 | 0) %2;
-		game.sprites['blue_idle_arm_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_idle_leg_left'].draw(_, player.frame, x, y, flip);
-		game.sprites['red_idle_book'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_idle_chest'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_idle_chest'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['blue_idle_leg_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_idle_head'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['white_idle_bandana'].draw(_, player.frame, x, y, flip);
-		
-		game.sprites['steel_idle_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_idle_arm_right'].draw(_, player.frame, x, y, flip);
-		game.sprites['dark_idle_arm_right'].draw(_, player.frame, x, y, flip);
-	}
-	*/
-	
-	/*
-	_.fillStyle = player.color;
-	_.fillRect(game.frame.x + player.x | 0, game.frame.y + player.y - player.h | 0,
-		player.w, player.h);
-	*/
 }
 
-Player.prototype.equipItem = function (item){
+Player.prototype.equipItem = function (itemId){
 	var self = this,
-		it = typeof item === 'object' ? item : {id: item +''};
+		id = itemId +'',
+		item = self.items[id];
 	
-	if(!item) return false;
+	if(!item || !item.it)
+		return !!user.warn('You don\'t have item ('+ id +')');
+	if(!(item.it.armor_space in self.armor))
+		return !!user.warn('You cannot equip item ('+ item.it.name +')');
 	
+	self.armor[item.it.armor_space] = self.items[id].it;
+	
+	user.notify( item.it.name +' equipped');
+}
+Player.prototype.unequipItem = function (itemId){
+	var self = this,
+		id = itemId +'',
+		item = self.items[id];
+	
+	if(!item || !item.it)
+		return !!user.warn('You don\'t have item ('+ id +')');
+	
+	if(self.armor[item.it.armor_space] == item.it)
+		self.armor[item.it.armor_space] = null;
+	
+	user.notify( item.it.name +' unequipped');
 }
 
-Player.prototype.addItem = function (item, quantity){
+Player.prototype.addItem = function (itemId, quantity){
 	var self = this,
-		it = typeof item === 'object' ? item : g.items[item],
-		quantity = (typeof item == 'object' ? item.quantity : quantity) || 1;
+		it = g.items[itemId +''],
+		quantity = quantity || 1;
 	
 	if(!it){
-		user.warn('invalid item: '+ JSON.stringify(item));
+		user.warn('invalid item: '+ itemId);
 		return;
 	}
-	if(!(item.id in self.items)){
-		self.items[item.id] = 0;
+	
+	if(!(it.id in self.items)){
+		self.items[it.id] = { it: it, quantity: 0 };
 	}
-	self.items[item.id] += quantity;
+	self.items[it.id].quantity += quantity;
 	
 	user.notify(quantity +' '+ it.name +'(s) added to inventory');
+}
+Player.prototype.removeItem = function (itemId, quantity){
+	var self = this,
+		it = self.items[itemId +''],
+		quantity = quantity || 1;
+	
+	if(!it){
+		user.warn('You do not have item: '+ itemId);
+		return;
+	}
+	
+	self.items[it.id].quantity -= quantity;
+	
+	if(self.items[it.id].quantity <= 0){
+		delete self.items[it.id];
+	}
+	
+	user.notify(quantity +' '+ it.name +'(s) removed from inventory');
 }
