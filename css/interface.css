@@ -1,3 +1,48 @@
+/* START Player Stats */
+#player-stats {
+position:absolute;
+left:0;
+top:0;
+width:200px;
+margin:10px;
+padding:5px;
+background:#ffffff;
+}
+#player-stats .p-stat {
+display:block;
+position:relative;
+height:26px;
+margin-bottom:5px;
+background:#888888;
+font-family:Monaco,Menlo,monospace;
+font-size:14px;
+color:#ffffff;
+}
+#player-stats .p-stat:last-child {
+margin-bottom:0;
+}
+#player-stats .p-stat[data-stat]:after {
+content:attr(data-stat-prefix)" "attr(data-stat);
+position:absolute;
+left:0;
+top:0;
+right:0;
+line-height:26px;
+text-align:center;
+}
+#player-stats .p-stat .bar {
+display:block;
+height:inherit;
+background:#444444;
+}
+#player-stats .p-stat.stat-lvl .bar {
+background:#343842;
+}
+#player-stats .p-stat.stat-hp .bar {
+background:#7f2222;
+}
+/* END Player Stats */
+
 /* START Touch Controls */
 #touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
 #touch-ctrl .ctrl {
