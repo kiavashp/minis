@@ -145,6 +145,7 @@ Player.prototype.draw = function (){
 		game.sprites['blue_run_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['dark_run_arm_right'].draw(_, player.frame, x, y, flip);
 	}else{
+		player.frame = (player.frame / 4 | 0) %2;
 		game.sprites['blue_idle_arm_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_idle_leg_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['red_idle_book'].draw(_, player.frame, x, y, flip);
