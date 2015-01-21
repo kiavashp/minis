@@ -67,11 +67,11 @@ top:10px;
 right:10px;
 width:30px;
 height:30px;
-background:rgba(0,0,0,0.1);
+background:rgba(255,255,255,0.1);
 z-index:1001;
 }
 #inventory_button:active {
-background:rgba(0,0,0,0.2);
+background:rgba(255,255,255,0.2);
 }
 #items {
 display: none;
@@ -79,11 +79,13 @@ position: absolute;
 top: 0;
 right: 0;
 bottom: 0;
-background: rgba(0,0,0,0.2);
+background: rgba(0,0,0,0.5);
 min-width: 200px;
 max-width: 90%;
 padding: 10px;
 font-family: monospace;
+font-weight:300;
+color:#bbbbbb;
 cursor: default;
 z-index: 1000;
 }
@@ -113,7 +115,7 @@ border-left-color:#ffffff;
 }
 </style>
 <div id="inventory_button"></div>
-<div id="items"></div>
+<div id="items" class="touchscroll"></div>
 
 <script>
 w.on('load', function (){
