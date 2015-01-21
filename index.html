@@ -77,7 +77,7 @@ z-index:1001;
 /*background:rgba(255,255,255,0.75);*/
 background-position-y:-40px;
 }
-#items {
+#inventory {
 display:block;
 position: absolute;
 top: 0;
@@ -87,74 +87,117 @@ background: rgba(0,0,0,0.5);
 box-shadow: 0 0 5px rgba(0,0,0,0.5);
 min-width: 200px;
 max-width: 300px;
-padding: 10px;
+padding: 10px 20px;
 font-family: Monaco, Menlo, monospace;
 font-weight:300;
 font-size:14px;
 color:#bbbbbb;
 cursor: default;
 z-index: 1000;
+
+transition:.1s right linear/*, .15s opacity ease*/;
 -webkit-transition:.1s right linear/*, .15s opacity ease*/;
+-moz-transition:.1s right linear/*, .15s opacity ease*/;
+-ms-transition:.1s right linear/*, .15s opacity ease*/;
+-o-transition:.1s right linear/*, .15s opacity ease*/;
 }
-#items.hide {
+#inventory ::selection {
+background:rgba(0,0,0,0.4);
+}
+#inventory.hide {
 display:none;
 }
-#items:not(.show) {
+#inventory:not(.show) {
 /*opacity:0;*/
 right:-300px;
 box-shadow:none;
 }
-#items:before {
+#inventory:before {
 display: block;
 content: "Inventory";
-line-height: 32px;
+line-height: 40px;
 font-size:18px;
 color:#ffffff;
 margin-bottom:10px;
 padding-left: 10px;
-padding:4px;
 }
-#items .item {
-padding:4px 8px;
+.inv_items {
+max-height:calc( 100% - 60px );
+overflow-y:scroll;
+padding:10px 0;
+}
+.inv_items .item {
+position:relative;
+padding:8px;
+padding-left:16px;
+
+transition:.1s background ease;
+-webkit-transition:.1s background ease;
+-moz-transition:.1s background ease;
+-ms-transition:.1s background ease;
+-o-transition:.1s background ease;
+/*
 border-left:2px solid transparent;
 box-shadow:inset 0 -1px 0 rgba(255,255,255,0.2);
 margin-bottom:2px;
+*/
 }
-#items .item:active {
-background:rgba(255,255,255,0.1);
+.inv_items .item:active {
+background:rgba(255,255,255,0.05);
 }
-#items .item[data-equipped] {
-border-left-color:#ffffff;
+.inv_items .item[data-equipped]:before {
+content: '';
+display: inline-block;
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+margin: auto 0;
+width: 0;
+height: 0;
+border-color: transparent;
+border-style: solid;
+border-width: 4px;
+border-left-color: rgba(255,255,255,0.75);
+}
+.inv_items .item[data-quantity]:before {
+content:attr(data-quantity);
+font-size:12px;
+float:right;
+color:#888888;
 }
 </style>
 <div id="inventory_button"></div>
-<div id="items" class="touchscroll"></div>
+<div id="inventory">
+	<div class="inv_items touchscroll"></div>
+</div>
 
 <script>
 w.on('load', function (){
 // temporary stuff for testing
 
 var inv_button = document.getElementById('inventory_button'),
-	items = document.getElementById('items');
+	inventory = document.getElementById('inventory'),
+	inv_items = document.querySelector('.inv_items');
 
 inv_button.addEventListener('click', function (){
 	var el = this;
-	if(items.classList.contains('show')){
+	if(inventory.classList.contains('show')){
 		el.classList.remove('active');
-		items.classList.remove('show');
+		inventory.classList.remove('show');
 		g.emit('start');
 		setTimeout(function (){
-			if(!items.classList.contains('show')){
-				items.classList.add('hide');
+			if(!inventory.classList.contains('show')){
+				inventory.classList.add('hide');
 			}
 		}, 200);
 	}else{
-		items.classList.remove('hide');
+		inventory.classList.remove('hide');
 		setTimeout(function (){
-			items.classList.add('show');
+			inventory.classList.add('show');
 		}, 10);
 		el.classList.add('active');
-		items.innerHTML = '';
+		inv_items.innerHTML = '';
 		listItems();
 		g.emit('stop');
 	}
@@ -164,9 +207,12 @@ function listItems (){
 	var i, te, pl = g.player;
 	
 	for(i in pl.items){
-		te = items.appendChild(document.createElement('div'));
+		te = inv_items.appendChild(document.createElement('div'));
 		te.className = 'item';
 		te.innerText = pl.items[i].it.name;
+		if(pl.items[i].quantity > 1){
+			te.innerText += ' ('+ pl.items[i].quantity +')';
+		}
 		te.setAttribute('data-itemid', i);
 		if(pl.isEquipped(i)){
 			te.setAttribute('data-equipped', '');
@@ -187,11 +233,7 @@ function listItems (){
 	}
 }
 
-g.player.addItem('001');
-g.player.addItem('002');
-g.player.addItem('003');
-g.player.addItem('004');
-g.player.addItem('005');
+for(var i in g.items) g.player.addItem(i, 1 + (4*Math.random()|0));
 
 });
 </script>
