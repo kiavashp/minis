@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function (){
 var user = {};
 user.notify = function (){
 	var args = Array.prototype.slice.call(arguments);
-	console.log('user.notify '+ args.join(' '));
+	console.log('user.notify:: '+ args.join(' '));
 };
 user.warn = function (){
 	var args = Array.prototype.slice.call(arguments);
-	console.log('user.warn '+ args.join(' '));
+	console.log('user.warn:: '+ args.join(' '));
 };
 </script>
 
@@ -58,3 +58,12 @@ background-image:url(./assets/interface/ctrl-move.png);background-size:auto 80px
 	
 	<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
 </div>
+
+<script>
+// temporary stuff for testing
+g.player.addItem('001');
+g.player.addItem('002');
+g.player.addItem('003');
+g.player.addItem('004');
+g.player.addItem('005');
+</script>
