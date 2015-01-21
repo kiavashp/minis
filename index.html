@@ -43,16 +43,16 @@ canvas {position:absolute;left:0;top:0;}
 #touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
 #touch-ctrl .ctrl {
 float:left;margin:0 10px;width:40px;height:40px;
-background-image:url(./assets/interface/ctrl-move.png);background-size:auto 80px;}
-#touch-ctrl .ctrl:active {background-position-y:40px;}
+background-image:url(./assets/interface/ctrl-buttons.png);background-size:auto 80px;}
+#touch-ctrl .ctrl:active {background-position-y:-40px;}
 #touch-left-ctrl.ctrl {width:50px;background-position-x:0px;margin-right:0;}
-#touch-right-ctrl.ctrl {width:50px;background-position-x:90px;margin-left:0;}
-#touch-up-ctrl.ctrl {background-position-x:180px;}
+#touch-right-ctrl.ctrl {width:50px;background-position-x:-50px;margin-left:0;}
+#touch-up-ctrl.ctrl {background-position-x:-100px;}
 </style>
 
 <canvas id="can"></canvas>
 
-<div id="touch-ctrl" style="display:none;">
+<div id="touch-ctrl" >
 	<div class="ctrl" id="touch-left-ctrl"></div>
 	<div class="ctrl" id="touch-right-ctrl"></div>
 	
@@ -65,40 +65,52 @@ display:block;
 position:absolute;
 top:10px;
 right:10px;
-width:30px;
-height:30px;
-background:rgba(255,255,255,0.1);
+width:40px;
+height:40px;
+/*background:rgba(255,255,255,0.5);*/
+background-image:url(./assets/interface/ctrl-buttons.png);
+background-size:auto 80px;
+background-position:-140px 0;
 z-index:1001;
 }
-#inventory_button:active {
-background:rgba(255,255,255,0.2);
+#inventory_button.active, #inventory_button:active {
+/*background:rgba(255,255,255,0.75);*/
+background-position-y:-40px;
 }
 #items {
-display: none;
+display:block;
 position: absolute;
 top: 0;
 right: 0;
 bottom: 0;
 background: rgba(0,0,0,0.5);
+box-shadow: 0 0 5px rgba(0,0,0,0.5);
 min-width: 200px;
-max-width: 90%;
+max-width: 300px;
 padding: 10px;
 font-family: monospace;
 font-weight:300;
 color:#bbbbbb;
 cursor: default;
 z-index: 1000;
+-webkit-transition:.2s right linear/*, .15s opacity ease*/;
 }
-#items.show {
-display: block;
+#items.hide {
+display:none;
+}
+#items:not(.show) {
+/*opacity:0;*/
+right:-300px;
+box-shadow:none;
 }
 #items:before {
 display: block;
 content: "Inventory";
-text-align:center;
+line-height: 32px;
 font-size:18px;
 color:#ffffff;
 margin-bottom:10px;
+padding-left: 10px;
 padding:4px;
 }
 #items .item {
@@ -125,11 +137,22 @@ var inv_button = document.getElementById('inventory_button'),
 	items = document.getElementById('items');
 
 inv_button.addEventListener('click', function (){
+	var el = this;
 	if(items.classList.contains('show')){
+		el.classList.remove('active');
 		items.classList.remove('show');
 		g.emit('start');
+		setTimeout(function (){
+			if(!items.classList.contains('show')){
+				items.classList.add('hide');
+			}
+		}, 200);
 	}else{
-		items.classList.add('show');
+		items.classList.remove('hide');
+		setTimeout(function (){
+			items.classList.add('show');
+		}, 10);
+		el.classList.add('active');
 		items.innerHTML = '';
 		listItems();
 		g.emit('stop');
