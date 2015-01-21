@@ -59,10 +59,73 @@ background-image:url(./assets/interface/ctrl-move.png);background-size:auto 80px
 	<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
 </div>
 
+<style>
+#items {
+/*display: none;*/
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.2);
+min-width: 200px;
+max-width: 90%;
+padding: 10px;
+font-family: monospace;
+cursor: default;
+}
+#items.show {
+display: block;
+}
+#items:before {
+display: block;
+content: "Inventory";
+text-align:center;
+font-size:18px;
+color:#ffffff;
+margin-bottom:10px;
+padding:4px;
+}
+#items .item {
+padding:4px 8px;
+border-left:2px solid transparent;
+box-shadow:inset 0 -1px 0 rgba(255,255,255,0.2);
+}
+#items .item:active {
+background:rgba(255,255,255,0.1);
+}
+#items .item[data-equipped] {
+border-left-color:#ffffff;
+}
+</style>
+<div id="items"></div>
+
 <script>
 w.on('load', function (){
 // temporary stuff for testing
 
+var items = document.getElementById('items');
+function listItems (){
+	var i, te, pl = g.player;
+	
+	for(i in pl.items){
+		te = items.appendChild(document.createElement('div'));
+		te.className = 'item';
+		te.innerText = pl.items[i].it.name;
+		te.setAttribute('data-itemid', i);
+		te.addEventListener('click', (function (itemId){
+			return function (ev){
+				var el = this;
+				if(pl.isEquipped(itemId)){
+					pl.unequipItem(itemId);
+					el.removeAttribute('data-equipped');
+				}else{
+					pl.equipItem(itemId);
+					el.setAttribute('data-equipped', '');
+				}
+			}
+		}(i)) );
+	}
+}
 
 g.player.addItem('001');
 g.player.addItem('002');
@@ -70,6 +133,7 @@ g.player.addItem('003');
 g.player.addItem('004');
 g.player.addItem('005');
 
+listItems();
 
 });
 </script>
