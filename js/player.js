@@ -113,7 +113,7 @@ Player.prototype.draw = function (){
 		player.frame = player.speed.y < 2 
 			? ( game.ground - player.y < 40 ? 2 : 1 ) : 0;
 		
-		game.sprites['blue_fall_arm_right'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_fall_arm_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_fall_leg_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['red_fall_book'].draw(_, player.frame, x, y, flip);
 		
@@ -126,10 +126,10 @@ Player.prototype.draw = function (){
 		game.sprites['white_fall_bandana'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['steel_fall_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_fall_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_fall_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['dark_fall_arm_right'].draw(_, player.frame, x, y, flip);
 	}else if(player.moving){
-		game.sprites['blue_run_arm_right'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_run_arm_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_run_leg_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['red_run_book'].draw(_, player.frame, x, y, flip);
 		
@@ -142,10 +142,10 @@ Player.prototype.draw = function (){
 		game.sprites['white_run_bandana'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['steel_run_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_run_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_run_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['dark_run_arm_right'].draw(_, player.frame, x, y, flip);
 	}else{
-		game.sprites['blue_idle_arm_right'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_idle_arm_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_idle_leg_left'].draw(_, player.frame, x, y, flip);
 		game.sprites['red_idle_book'].draw(_, player.frame, x, y, flip);
 		
@@ -158,7 +158,7 @@ Player.prototype.draw = function (){
 		game.sprites['white_idle_bandana'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['steel_idle_dagger'].draw(_, player.frame, x, y, flip);
-		game.sprites['blue_idle_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['blue_idle_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['dark_idle_arm_right'].draw(_, player.frame, x, y, flip);
 	}
 	
