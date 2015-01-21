@@ -8,7 +8,7 @@ function Actor (o, game){
 	actor.game = game || o.game || Actor.def_game;
 	actor.life = o.life || 100;
 	actor.speed = { x: 0, y: 0 };
-	actor.movespeed = o.movespeed || { x: 4, y: 15 };
+	actor.movespeed = o.movespeed || { x: 5, y: 15 };
 	actor.inair = false;
 	actor.x = o.x || 40;
 	actor.y = o.y || 0;

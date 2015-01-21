@@ -22,6 +22,7 @@ Sprite.prototype.draw = function (context, frame, x, y, flip){
 		context.setTransform(-cnst.pixelratio, 0, 0, cnst.pixelratio, 80*cnst.pixelratio, 0);
 		x = - x;
 	}
+	
 	var s = this,
 		image = s.image,
 		f = frame % s.frames.length,

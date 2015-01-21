@@ -9,45 +9,19 @@ function Player (options, game){
 	var player = this,
 		o = typeof options === 'object' ? options : {};
 	
-//	player.game = game || o.game;
-	/*
-	player.x = o.x || 40;
-	player.y = o.y || 0;
-	player.w = o.w || 80;
-	player.h = o.h || 100;
-	*/
-	/*
-	player.speed = { x: 0, y: 0};
-	player.movespeed = o.movespeed || { x: 5, y: 15 };
-	*/
-//	player.color = '#aa99bb';
-	/*
-	player.moving = false;
-	player.flip = false;
-	player._frame = 0;
-	player.frame = 0;
-	player.lastupdate = Date.now();
-	*/
-//	player.inair = false;
-	
 	player.items = {};
 	player.armor = {
-		head: null,
-		body: null,
-		
-		full_body: null,
+		head: null || g.items['White Bandana'],
+		chest: null || g.items['Dark Plate'],
 		
 		left_leg: null,
 		right_leg: null,
 		
 		left_arm: null,
-		right_arm: null,
+		right_arm: null || g.items['Dark Shoulder'],
 		
-		left_hand: null,
-		right_hand: null,
-		
-		left_wield: null,
-		right_wield: null,
+		left_wield: null || g.items['Red Mage Book'],
+		right_wield: null || g.items['Steel Dagger'],
 		
 		back: null
 	}
@@ -107,8 +81,55 @@ Player.prototype.draw = function (){
 		x = game.frame.x + player.x | 0,
 		y = game.frame.y + player.y - player.h | 0,
 		_ = game.context,
-		flip = player.flip;
+		flip = player.flip,
+		sequence = player.inair ? 'fall' : player.moving ? 'run' : 'idle';
 	
+	if(sequence == 'fall'){
+		if(player.speed.y < 2) player.frame = ( game.ground - player.y < 40 ? 2 : 1 )
+		else player.frame = 0;
+	}else if(sequence == 'idle'){
+		player.frame = (player.frame / 4 | 0) % 2;
+	}
+	
+	// player arm_left
+	game.sprites['blue_'+ sequence +'_arm_left'].draw(_, player.frame, x, y, flip);
+	
+	// player leg_left
+	game.sprites['blue_'+ sequence +'_leg_left'].draw(_, player.frame, x, y, flip);
+	
+	// armor right_wield
+	if(player.armor.left_wield)
+		player.armor.left_wield.draw(_, sequence, player.frame, x, y, flip);
+	
+	// player chest
+	game.sprites['blue_'+ sequence +'_chest'].draw(_, player.frame, x, y, flip);
+	
+	// armor chest
+	if(player.armor.chest)
+		player.armor.chest.draw(_, sequence, player.frame, x, y, flip);
+	
+	// player leg_right
+	game.sprites['blue_'+ sequence +'_leg_right'].draw(_, player.frame, x, y, flip);
+	
+	// player head
+	game.sprites['blue_'+ sequence +'_head'].draw(_, player.frame, x, y, flip);
+	
+	// armor head
+	if(player.armor.head)
+		player.armor.head.draw(_, sequence, player.frame, x, y, flip);
+	
+	// armor right_wield
+	if(player.armor.right_wield)
+		player.armor.right_wield.draw(_, sequence, player.frame, x, y, flip);
+	
+	// player arm_right
+	game.sprites['blue_'+ sequence +'_arm_right'].draw(_, player.frame, x, y, flip);
+	
+	// armor arm_right
+	if(player.armor.right_arm)
+		player.armor.right_arm.draw(_, sequence, player.frame, x, y, flip);
+	
+	/*
 	if(player.inair){
 		player.frame = player.speed.y < 2 
 			? ( game.ground - player.y < 40 ? 2 : 1 ) : 0;
@@ -162,6 +183,7 @@ Player.prototype.draw = function (){
 		game.sprites['blue_idle_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['dark_idle_arm_right'].draw(_, player.frame, x, y, flip);
 	}
+	*/
 	
 	/*
 	_.fillStyle = player.color;
