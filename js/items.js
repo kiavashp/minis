@@ -34,21 +34,23 @@ Item.prototype.draw = function (context, sequence, frame, x, y, flip){
 }
 
 g.items = {};
-g.additem = function (name, item){
+g.additem = function (id, name, item){
 	for(var s in item.sprites){
 		if(!(item.sprites[s] instanceof Sprite)){
 			item.sprites[s] = g.sprites[item.sprites[s] +''];
 		}
 	}
 	
+	item.id = id;
 	item.name = name;
-	g.items[name] = new Item(item);
+	g.items[id] = g.items[name] = new Item(item);
 	return g.additem.bind(g);
 }
 
 g.additem(
 	
-	"White Bandana", {
+	'001', "White Bandana", {
+		armor_space: 'head',
 		sprites: {
 			'idle': g.sprites['white_idle_bandana'],
 			'run': g.sprites['white_run_bandana'],
@@ -56,7 +58,8 @@ g.additem(
 		}
 	})(
 	
-	"Steel Dagger", {
+	'002', "Steel Dagger", {
+		armor_space: 'right_wield',
 		sprites: {
 			'idle': g.sprites['steel_idle_dagger'],
 			'run': g.sprites['steel_run_dagger'],
@@ -64,7 +67,8 @@ g.additem(
 		}
 	})(
 	
-	"Dark Shoulder", {
+	'003', "Dark Shoulder", {
+		armor_space: 'right_arm',
 		sprites: {
 			'idle': g.sprites['dark_idle_arm_right'],
 			'run': g.sprites['dark_run_arm_right'],
@@ -72,7 +76,8 @@ g.additem(
 		}
 	})(
 	
-	"Dark Plate", {
+	'004', "Dark Plate", {
+		armor_space: 'chest',
 		sprites: {
 			'idle': g.sprites['dark_idle_chest'],
 			'run': g.sprites['dark_run_chest'],
@@ -80,7 +85,8 @@ g.additem(
 		}
 	})(
 	
-	"Red Mage Book", {
+	'005', "Red Mage Book", {
+		armor_space: 'left_wield',
 		sprites: {
 			'idle': g.sprites['red_idle_book'],
 			'run': g.sprites['red_run_book'],
