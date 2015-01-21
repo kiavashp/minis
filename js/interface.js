@@ -1,6 +1,8 @@
 window.mobile = 'standalone' in navigator;
 window.addEventListener('load', function (){
 	
+	if(mobile) document.body.classList.add('mobile');
+	
 	// START Touch Controls
 	var touch_ctrl = document.getElementById('touch-ctrl'),
 		touch_left = document.getElementById('touch-left-ctrl'),
