@@ -9,7 +9,7 @@ function Player (options, game){
 	var player = this,
 		o = typeof options === 'object' ? options : {};
 	
-	player.game = game || o.game;
+//	player.game = game || o.game;
 	/*
 	player.x = o.x || 40;
 	player.y = o.y || 0;
@@ -21,11 +21,13 @@ function Player (options, game){
 	player.movespeed = o.movespeed || { x: 5, y: 15 };
 	*/
 //	player.color = '#aa99bb';
+	/*
 	player.moving = false;
 	player.flip = false;
 	player._frame = 0;
 	player.frame = 0;
 	player.lastupdate = Date.now();
+	*/
 //	player.inair = false;
 	
 	player.items = {};
@@ -104,7 +106,7 @@ Player.prototype.draw = function (){
 		game = player.game,
 		x = game.frame.x + player.x | 0,
 		y = game.frame.y + player.y - player.h | 0,
-		_ = player.context || game.context,
+		_ = game.context,
 		flip = player.flip;
 	
 	if(player.inair){
@@ -113,30 +115,51 @@ Player.prototype.draw = function (){
 		
 		game.sprites['blue_fall_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_fall_leg_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['red_fall_book'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_fall_chest'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_fall_chest'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_fall_leg_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_fall_head'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['white_fall_bandana'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['steel_fall_dagger'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_fall_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_fall_arm_right'].draw(_, player.frame, x, y, flip);
 	}else if(player.moving){
 		game.sprites['blue_run_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_run_leg_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['red_run_book'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_run_chest'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_run_chest'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_run_leg_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_run_head'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['white_run_bandana'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['steel_run_dagger'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_run_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_run_arm_right'].draw(_, player.frame, x, y, flip);
 	}else{
 		game.sprites['blue_idle_arm_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_idle_leg_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['red_idle_book'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_idle_chest'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_idle_chest'].draw(_, player.frame, x, y, flip);
 		
 		game.sprites['blue_idle_leg_right'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_idle_head'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['white_idle_bandana'].draw(_, player.frame, x, y, flip);
+		
+		game.sprites['steel_idle_dagger'].draw(_, player.frame, x, y, flip);
 		game.sprites['blue_idle_arm_left'].draw(_, player.frame, x, y, flip);
+		game.sprites['dark_idle_arm_right'].draw(_, player.frame, x, y, flip);
 	}
 	
 	/*

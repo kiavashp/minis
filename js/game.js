@@ -34,7 +34,8 @@ g.fps = function (cb){
 
 g.once('ready', function (){
 	var game = this;
-	game.player = new Player({}, game);
+	Actor.bind(game);
+	game.player = new Player({});
 });
 
 g.on('start', function frame (){
@@ -62,7 +63,7 @@ g.on('update', function (){
 
 g.on('draw', function (){
 	var a, game = this;
-	game._.clearRect(0, 0, game.w, game.h);
+//	game._.clearRect(0, 0, game.w, game.h);
 	game._.fillStyle = '#6B6249';
 	game._.fillRect(0, 0, game.w, game.h);
 	
@@ -88,12 +89,8 @@ g.on('resize', function (dontdraw){
 w.on('keydown', function (e){ g.keys[e.keyCode] = Date.now() });
 w.on('keyup', function (e){ g.keys[e.keyCode] = false });
 function eleKeySim (el, keycode){
-	el.addEventListener('mousedown', function (){
-		g.keys[keycode] = Date.now();
-	});
-	el.addEventListener('mouseup', function (){
-		g.keys[keycode] = false;
-	});
+	el.addEventListener('mousedown', function (){ g.keys[keycode] = Date.now(); });
+	el.addEventListener('mouseup', function (){ g.keys[keycode] = false; });
 };
 
 w.on('DOMContentLoaded', function (){
@@ -105,8 +102,18 @@ w.on('DOMContentLoaded', function (){
 	
 	var a = 'ackingStorePixelRatio', b = 'equestAnimationFrame', c = 'ancelAnimationFrame';
 	cnst.pixelratio = (w.devicePixelRatio||1)/(g._['webkitB'+a]||g._['mozB'+a]||1);
-	cnst.animframe = (w['r'+b]||w['webkitR'+b]||w['mozR'+b]||function(f){setTimeout(f,16)}).bind(w);
+	/*
+	cnst.animframe = function(f){
+		return setTimeout(f, 16);
+	};
+	cnst.stopframe = function(t){
+		clearTimeout(t);
+	};
+	*/
+	
+	cnst.animframe = (w['r'+b]||w['webkitR'+b]||w['mozR'+b]||function(f){return setTimeout(f,16)}).bind(w);
 	cnst.stopframe = (w['c'+c]||w['webkitC'+c]||w['mozC'+c]||function(t){clearTimeout(t)}).bind(w);
+	
 	g.emit('resize', true);
 	g.emit('ready');
 	g.emit('start');

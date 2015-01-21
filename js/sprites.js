@@ -42,189 +42,389 @@ g.addsprite = function (name, sprite){
 
 // idle sprites
 g.addsprite(
-"blue_idle_head", {
-	image: g.image("./assets/character/blue_head.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_idle_chest", {
-	image: g.image("./assets/character/blue_chest.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_idle_arm_left", {
-	image: g.image("./assets/character/blue_arm_left.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_idle_arm_right", {
-	image: g.image("./assets/character/blue_arm_right.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_idle_leg_left", {
-	image: g.image("./assets/character/blue_leg_left.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_idle_leg_right", {
-	image: g.image("./assets/character/blue_leg_right.png"),
-	frames: [
-		{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-});
+	
+	// blue character
+	"blue_idle_head", {
+		image: g.image("./assets/character/blue_head.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_idle_chest", {
+		image: g.image("./assets/character/blue_chest.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_idle_arm_left", {
+		image: g.image("./assets/character/blue_arm_left.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_idle_arm_right", {
+		image: g.image("./assets/character/blue_arm_right.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_idle_leg_left", {
+		image: g.image("./assets/character/blue_leg_left.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_idle_leg_right", {
+		image: g.image("./assets/character/blue_leg_right.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// white bandana
+	"white_idle_bandana", {
+		image: g.image("./assets/armor/cloth/white_bandana.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// steel dagger
+	"steel_idle_dagger", {
+		image: g.image("./assets/weapon/dagger/steel.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// dark arm right
+	"dark_idle_arm_right", {
+		image: g.image("./assets/armor/plate/dark_arm_right.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// dark chest
+	"dark_idle_chest", {
+		image: g.image("./assets/armor/plate/dark_chest.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// red book
+	"red_idle_book", {
+		image: g.image("./assets/offhand/misc/red_book.png"),
+		frames: [
+			{ image: [0, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	});
 
 // run sprites
 g.addsprite(
-"blue_run_head", {
-	image: g.image("./assets/character/blue_head.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_run_chest", {
-	image: g.image("./assets/character/blue_chest.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_run_arm_left", {
-	image: g.image("./assets/character/blue_arm_left.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_run_arm_right", {
-	image: g.image("./assets/character/blue_arm_right.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_run_leg_left", {
-	image: g.image("./assets/character/blue_leg_left.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_run_leg_right", {
-	image: g.image("./assets/character/blue_leg_right.png"),
-	frames: [
-		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-});
+	"blue_run_head", {
+		image: g.image("./assets/character/blue_head.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_run_chest", {
+		image: g.image("./assets/character/blue_chest.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_run_arm_left", {
+		image: g.image("./assets/character/blue_arm_left.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_run_arm_right", {
+		image: g.image("./assets/character/blue_arm_right.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_run_leg_left", {
+		image: g.image("./assets/character/blue_leg_left.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_run_leg_right", {
+		image: g.image("./assets/character/blue_leg_right.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// white bandana
+	"white_run_bandana", {
+		image: g.image("./assets/armor/cloth/white_bandana.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// steel dagger
+	"steel_run_dagger", {
+		image: g.image("./assets/weapon/dagger/steel.png"),
+		frames: [
+			/*
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+			*/
+			{ image: [630, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [790, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [950, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [1110, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [1270, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [1430, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [1590, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [1750, 0, 160, 200], draw: [-5, 0, 80, 100] }
+		]
+	})(
+	
+	// dark arm right
+	"dark_run_arm_right", {
+		image: g.image("./assets/armor/plate/dark_arm_right.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// dark chest
+	"dark_run_chest", {
+		image: g.image("./assets/armor/plate/dark_chest.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// red book
+	"red_run_book", {
+		image: g.image("./assets/offhand/misc/red_book.png"),
+		frames: [
+			{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	});
 
 // fall sprites
 g.addsprite(
-"blue_fall_head", {
-	image: g.image("./assets/character/blue_head.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_fall_chest", {
-	image: g.image("./assets/character/blue_chest.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_fall_arm_left", {
-	image: g.image("./assets/character/blue_arm_left.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_fall_arm_right", {
-	image: g.image("./assets/character/blue_arm_right.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_fall_leg_left", {
-	image: g.image("./assets/character/blue_leg_left.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-})(
-"blue_fall_leg_right", {
-	image: g.image("./assets/character/blue_leg_right.png"),
-	frames: [
-		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
-});
+	
+	// blue character
+	"blue_fall_head", {
+		image: g.image("./assets/character/blue_head.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_fall_chest", {
+		image: g.image("./assets/character/blue_chest.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_fall_arm_left", {
+		image: g.image("./assets/character/blue_arm_left.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_fall_arm_right", {
+		image: g.image("./assets/character/blue_arm_right.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_fall_leg_left", {
+		image: g.image("./assets/character/blue_leg_left.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	"blue_fall_leg_right", {
+		image: g.image("./assets/character/blue_leg_right.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// white bandana
+	"white_fall_bandana", {
+		image: g.image("./assets/armor/cloth/white_bandana.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// steel dagger
+	"steel_fall_dagger", {
+		image: g.image("./assets/weapon/dagger/steel.png"),
+		frames: [
+			/*
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+			*/
+			{ image: [1910, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [2070, 0, 160, 200], draw: [-5, 0, 80, 100] },
+			{ image: [2230, 0, 160, 200], draw: [-5, 0, 80, 100] }
+		]
+	})(
+	
+	// dark arm right
+	"dark_fall_arm_right", {
+		image: g.image("./assets/armor/plate/dark_arm_right.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// dark chest
+	"dark_fall_chest", {
+		image: g.image("./assets/armor/plate/dark_chest.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	})(
+	
+	// red book
+	"red_fall_book", {
+		image: g.image("./assets/offhand/misc/red_book.png"),
+		frames: [
+			{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
+		]
+	});
+

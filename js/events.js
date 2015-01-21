@@ -21,11 +21,11 @@ EventEmitter.prototype.off = function (e,f){
 EventEmitter.prototype.emit = function (e){
 	var f=0,l=this.listeners,a=Array.prototype.slice.call(arguments,1);
 	for(e+='',l=l[e]=l[e]||[];f<l.length;f++)l[f].apply(this,a);
-	if(e=='error'&&!f) throw a[0] instanceof Error ? a[0] : Error(a[0]);
+	if(e=='error'&&!f) throw a[0] instanceof Error?a[0]:Error(a[0]);
 }
 EventEmitter.prototype.removeAllListeners = function (e){
-	var l = this.listeners;
-	e+=''?l[e]=[]:l={};
+	var l=this.listeners;
+	e+=''?l[e]=[]:this.listeners={};
 }
 
 typeof module !== 'undefined' && (module.exports = EventEmitter);
