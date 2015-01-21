@@ -142,6 +142,9 @@ function listItems (){
 		te.className = 'item';
 		te.innerText = pl.items[i].it.name;
 		te.setAttribute('data-itemid', i);
+		if(pl.isEquipped(i)){
+			te.setAttribute('data-equipped', '');
+		}
 		te.addEventListener('click', (function (itemId){
 			return function (ev){
 				var el = this;
