@@ -2,17 +2,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
-<script>
-window.mobile = 'standalone' in navigator;
-document.addEventListener('DOMContentLoaded', function (){
-	if(mobile) window['touch-ctrl'].style.display = 'block';
-	eleKeySim(window['touch-left-ctrl'], 37);
-	eleKeySim(window['touch-right-ctrl'], 39);
-	eleKeySim(window['touch-up-ctrl'], 38);
-});
-</script>
-<script src="./js/touch.js"></script>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="./css/touch.css"/>
+<link rel="stylesheet" type="text/css" href="./css/interface.css"/>
 
+<!-- utilities -->
+<script src="./js/touch.js"></script>
 <script src="./js/util.js"></script>
 
 <!-- constructors -->
@@ -25,17 +20,10 @@ document.addEventListener('DOMContentLoaded', function (){
 <script src="./js/game.js"></script>
 <script src="./js/sprites.js"></script>
 <script src="./js/items.js"></script>
-<script data-src="./js/usernote.js">
-var user = {};
-user.notify = function (){
-	var args = Array.prototype.slice.call(arguments);
-	console.log('user.notify:: '+ args.join(' '));
-};
-user.warn = function (){
-	var args = Array.prototype.slice.call(arguments);
-	console.log('user.warn:: '+ args.join(' '));
-};
-</script>
+
+<!-- interface -->
+<script src="./js/interface.js"></script>
+<script src="./js/usernotify.js"></script>
 
 <style>
 body {overflow:hidden;-webkit-font-smoothing:antialiased;
@@ -47,133 +35,17 @@ user-select:none;
 -ms-user-select:none;
 }
 canvas {position:absolute;left:0;top:0;}
-#touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
-#touch-ctrl .ctrl {
-float:left;margin:0 10px;width:40px;height:40px;
-background-image:url(./assets/interface/ctrl-buttons.png);background-size:auto 80px;}
-#touch-ctrl .ctrl:active {background-position-y:-40px;}
-#touch-left-ctrl.ctrl {width:50px;background-position-x:0px;margin-right:0;}
-#touch-right-ctrl.ctrl {width:50px;background-position-x:-50px;margin-left:0;}
-#touch-up-ctrl.ctrl {background-position-x:-100px;}
 </style>
 
 <canvas id="can"></canvas>
 
-<div id="touch-ctrl" >
+<div id="touch-ctrl" style="display:none;">
 	<div class="ctrl" id="touch-left-ctrl"></div>
 	<div class="ctrl" id="touch-right-ctrl"></div>
 	
 	<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
 </div>
 
-<style>
-#inventory_button {
-display:block;
-position:absolute;
-top:10px;
-right:10px;
-width:40px;
-height:40px;
-/*background:rgba(255,255,255,0.5);*/
-background-image:url(./assets/interface/ctrl-buttons.png);
-background-size:auto 80px;
-background-position:-140px 0;
-z-index:1001;
-}
-#inventory_button.active, #inventory_button:active {
-/*background:rgba(255,255,255,0.75);*/
-background-position-y:-40px;
-}
-#inventory {
-display:block;
-position: absolute;
-top: 0;
-right: 0;
-bottom: 0;
-background: rgba(0,0,0,0.5);
-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-min-width: 200px;
-max-width: 300px;
-padding: 10px 20px;
-font-family: Monaco, Menlo, monospace;
-font-weight:300;
-font-size:14px;
-color:#bbbbbb;
-cursor: default;
-z-index: 1000;
-
-transition:.1s right linear/*, .15s opacity ease*/;
--webkit-transition:.1s right linear/*, .15s opacity ease*/;
--moz-transition:.1s right linear/*, .15s opacity ease*/;
--ms-transition:.1s right linear/*, .15s opacity ease*/;
--o-transition:.1s right linear/*, .15s opacity ease*/;
-}
-#inventory ::selection {
-background:rgba(0,0,0,0.4);
-}
-#inventory.hide {
-display:none;
-}
-#inventory:not(.show) {
-/*opacity:0;*/
-right:-300px;
-box-shadow:none;
-}
-#inventory:before {
-display: block;
-content: "Inventory";
-line-height: 40px;
-font-size:18px;
-color:#ffffff;
-margin-bottom:10px;
-padding-left: 10px;
-}
-.inv_items {
-max-height:calc( 100% - 60px );
-overflow-y:scroll;
-padding:10px 0;
-}
-.inv_items .item {
-position:relative;
-padding:8px;
-padding-left:16px;
-
-transition:.1s background ease;
--webkit-transition:.1s background ease;
--moz-transition:.1s background ease;
--ms-transition:.1s background ease;
--o-transition:.1s background ease;
-/*
-border-left:2px solid transparent;
-box-shadow:inset 0 -1px 0 rgba(255,255,255,0.2);
-margin-bottom:2px;
-*/
-}
-.inv_items .item:active {
-background:rgba(255,255,255,0.05);
-}
-.inv_items .item[data-equipped]:before {
-content: '';
-display: inline-block;
-position: absolute;
-left: 0;
-top: 0;
-bottom: 0;
-margin: auto 0;
-width: 0;
-height: 0;
-border-color: transparent;
-border-style: solid;
-border-width: 4px;
-border-left-color: rgba(255,255,255,0.75);
-}
-.inv_items .item[data-quantity]:before {
-content:attr(data-quantity);
-font-size:12px;
-float:right;
-color:#888888;
-}
-</style>
 <div id="inventory_button"></div>
 <div id="inventory">
 	<div class="inv_items touchscroll"></div>
@@ -182,63 +54,6 @@ color:#888888;
 <script>
 w.on('load', function (){
 // temporary stuff for testing
-
-var inv_button = document.getElementById('inventory_button'),
-	inventory = document.getElementById('inventory'),
-	inv_items = document.querySelector('.inv_items');
-
-inv_button.addEventListener('click', function (){
-	var el = this;
-	if(inventory.classList.contains('show')){
-		el.classList.remove('active');
-		inventory.classList.remove('show');
-		g.emit('start');
-		setTimeout(function (){
-			if(!inventory.classList.contains('show')){
-				inventory.classList.add('hide');
-			}
-		}, 200);
-	}else{
-		inventory.classList.remove('hide');
-		setTimeout(function (){
-			inventory.classList.add('show');
-		}, 10);
-		el.classList.add('active');
-		inv_items.innerHTML = '';
-		listItems();
-		g.emit('stop');
-	}
-});
-
-function listItems (){
-	var i, te, pl = g.player;
-	
-	for(i in pl.items){
-		te = inv_items.appendChild(document.createElement('div'));
-		te.className = 'item';
-		te.innerText = pl.items[i].it.name;
-		if(pl.items[i].quantity > 1){
-			te.innerText += ' ('+ pl.items[i].quantity +')';
-		}
-		te.setAttribute('data-itemid', i);
-		if(pl.isEquipped(i)){
-			te.setAttribute('data-equipped', '');
-		}
-		te.addEventListener('click', (function (itemId){
-			return function (ev){
-				var el = this;
-				if(pl.isEquipped(itemId)){
-					pl.unequipItem(itemId);
-					el.removeAttribute('data-equipped');
-				}else{
-					pl.equipItem(itemId);
-					el.setAttribute('data-equipped', '');
-				}
-				g.emit('draw');
-			}
-		}(i)) );
-	}
-}
 
 for(var i in g.items) g.player.addItem(i, 1 + (4*Math.random()|0));
 
