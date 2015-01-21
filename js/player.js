@@ -148,6 +148,15 @@ Player.prototype.unequipItem = function (itemId){
 	
 	user.notify( item.it.name +' unequipped');
 }
+Player.prototype.isEquipped = function (itemId){
+	var self = this,
+		id = itemId +'',
+		item = self.items[id];
+	
+	if(!item || !item.it) return false;
+	
+	return self.armor[item.it.armor_space] == item.it;
+}
 
 Player.prototype.addItem = function (itemId, quantity){
 	var self = this,
