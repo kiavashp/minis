@@ -1,6 +1,8 @@
 var cnst = {},
 	g = window.g || new EventEmitter;
 
+g._running = false;
+
 g.nextframe = null;
 g.lastupdate = Date.now();
 g.keys = {};
@@ -40,6 +42,7 @@ g.once('ready', function (){
 
 g.on('start', function frame (){
 	var game = this;
+	game._running = true;
 	game._.setTransform(cnst.pixelratio, 0, 0, cnst.pixelratio, 0, 0);
 	game.nextframe = cnst.animframe(frame.bind(game));
 	game.emit('update');
@@ -47,6 +50,7 @@ g.on('start', function frame (){
 
 g.on('stop', function (){
 	var game = this;
+	game._running = false;
 	cnst.stopframe(game.nextframe);
 });
 
@@ -122,4 +126,4 @@ w.on('DOMContentLoaded', function (){
 	g.emit('start');
 });
 
-w.on('resize', g.emit.bind(g,'resize'));
+w.on('resize', function (){ g.emit('resize', g._running); });
