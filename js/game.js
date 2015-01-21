@@ -86,7 +86,10 @@ g.on('resize', function (dontdraw){
 	if(!dontdraw) game.emit('draw');
 });
 
-w.on('keydown', function (e){ g.keys[e.keyCode] = Date.now() });
+w._focused = true;
+w.on('focus', function (){ w._focused = true });
+w.on('blur', function (){ w._focused = false; for(var k in g.keys) g.keys[k] = false; });
+w.on('keydown', function (e){ if(w._focused) g.keys[e.keyCode] = Date.now() });
 w.on('keyup', function (e){ g.keys[e.keyCode] = false });
 function eleKeySim (el, keycode){
 	el.addEventListener('mousedown', function (){ g.keys[keycode] = Date.now(); });
