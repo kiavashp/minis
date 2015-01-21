@@ -43,7 +43,7 @@ g.additem = function (id, name, item){
 	
 	item.id = id;
 	item.name = name;
-	g.items[id] = g.items[name] = new Item(item);
+	g.items[id] = new Item(item);
 	return g.additem.bind(g);
 }
 
