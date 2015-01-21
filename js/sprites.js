@@ -41,6 +41,12 @@ g.sprite_frames = {
 		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
 	],
+	IDLE_MX: function (x){ return [
+			{ image: [0, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [160, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [320, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [480, x, 160, 200], draw: [0, 0, 80, 100] }
+	] },
 	RUN: [
 		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [800, 0, 160, 200], draw: [0, 0, 80, 100] },
@@ -51,11 +57,26 @@ g.sprite_frames = {
 		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
 	],
+	RUN_MX: function (x){ return [
+			{ image: [640, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [800, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [960, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1120, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1280, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1440, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1600, x, 160, 200], draw: [0, 0, 80, 100] },
+			{ image: [1760, x, 160, 200], draw: [0, 0, 80, 100] }
+	] },
 	FALL: [
 		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
-	]
+	],
+	FALL_MX: function (x){ return [
+		{ image: [1920, x, 160, 200], draw: [0, 0, 80, 100] },
+		{ image: [2080, x, 160, 200], draw: [0, 0, 80, 100] },
+		{ image: [2240, x, 160, 200], draw: [0, 0, 80, 100] }
+	] },
 };
 g.sprites = {};
 g.addsprite = function (name, sprite){
@@ -69,28 +90,28 @@ g.addsprite(
 	
 	// blue character
 	"blue_idle_head", {
-		image: g.image("./assets/character/blue_head.png"),
+		image: g.image("./assets/character/blue.png"),
 		frames: g.sprite_frames.IDLE
 	})(
 	"blue_idle_chest", {
-		image: g.image("./assets/character/blue_chest.png"),
-		frames: g.sprite_frames.IDLE
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.IDLE_MX(200)
 	})(
 	"blue_idle_arm_left", {
-		image: g.image("./assets/character/blue_arm_left.png"),
-		frames: g.sprite_frames.IDLE
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.IDLE_MX(400)
 	})(
 	"blue_idle_arm_right", {
-		image: g.image("./assets/character/blue_arm_right.png"),
-		frames: g.sprite_frames.IDLE
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.IDLE_MX(600)
 	})(
 	"blue_idle_leg_left", {
-		image: g.image("./assets/character/blue_leg_left.png"),
-		frames: g.sprite_frames.IDLE
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.IDLE_MX(800)
 	})(
 	"blue_idle_leg_right", {
-		image: g.image("./assets/character/blue_leg_right.png"),
-		frames: g.sprite_frames.IDLE
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.IDLE_MX(1000)
 	})(
 	
 	// white bandana
@@ -126,28 +147,28 @@ g.addsprite(
 // run sprites
 g.addsprite(
 	"blue_run_head", {
-		image: g.image("./assets/character/blue_head.png"),
+		image: g.image("./assets/character/blue.png"),
 		frames: g.sprite_frames.RUN
 	})(
 	"blue_run_chest", {
-		image: g.image("./assets/character/blue_chest.png"),
-		frames: g.sprite_frames.RUN
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.RUN_MX(200)
 	})(
 	"blue_run_arm_left", {
-		image: g.image("./assets/character/blue_arm_left.png"),
-		frames: g.sprite_frames.RUN
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.RUN_MX(400)
 	})(
 	"blue_run_arm_right", {
-		image: g.image("./assets/character/blue_arm_right.png"),
-		frames: g.sprite_frames.RUN
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.RUN_MX(600)
 	})(
 	"blue_run_leg_left", {
-		image: g.image("./assets/character/blue_leg_left.png"),
-		frames: g.sprite_frames.RUN
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.RUN_MX(800)
 	})(
 	"blue_run_leg_right", {
-		image: g.image("./assets/character/blue_leg_right.png"),
-		frames: g.sprite_frames.RUN
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.RUN_MX(1000)
 	})(
 	
 	// white bandana
@@ -195,28 +216,28 @@ g.addsprite(
 	
 	// blue character
 	"blue_fall_head", {
-		image: g.image("./assets/character/blue_head.png"),
+		image: g.image("./assets/character/blue.png"),
 		frames: g.sprite_frames.FALL
 	})(
 	"blue_fall_chest", {
-		image: g.image("./assets/character/blue_chest.png"),
-		frames: g.sprite_frames.FALL
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.FALL_MX(200)
 	})(
 	"blue_fall_arm_left", {
-		image: g.image("./assets/character/blue_arm_left.png"),
-		frames: g.sprite_frames.FALL
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.FALL_MX(400)
 	})(
 	"blue_fall_arm_right", {
-		image: g.image("./assets/character/blue_arm_right.png"),
-		frames: g.sprite_frames.FALL
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.FALL_MX(600)
 	})(
 	"blue_fall_leg_left", {
-		image: g.image("./assets/character/blue_leg_left.png"),
-		frames: g.sprite_frames.FALL
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.FALL_MX(800)
 	})(
 	"blue_fall_leg_right", {
-		image: g.image("./assets/character/blue_leg_right.png"),
-		frames: g.sprite_frames.FALL
+		image: g.image("./assets/character/blue.png"),
+		frames: g.sprite_frames.FALL_MX(1000)
 	})(
 	
 	// white bandana
