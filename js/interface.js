@@ -24,6 +24,8 @@ window.addEventListener('load', function (){
 	function showInventory (){
 		var i, te, pl = g.player;
 		
+		inv_items.innerHTML = '';
+		
 		for(i in pl.items){
 			te = inv_items.appendChild(document.createElement('div'));
 			te.className = 'item';
@@ -45,6 +47,7 @@ window.addEventListener('load', function (){
 						pl.equipItem(itemId);
 						el.setAttribute('data-equipped', '');
 					}
+					showInventory();
 					g.emit('draw');
 				}
 			}(i)) );
