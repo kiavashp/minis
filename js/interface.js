@@ -21,7 +21,7 @@ window.addEventListener('load', function (){
 	// END Touch Controls
 	
 	// START Inventory
-	function showInventory (){
+	function showInventory (scroll){
 		var i, te, pl = g.player;
 		
 		inv_items.innerHTML = '';
@@ -47,10 +47,17 @@ window.addEventListener('load', function (){
 						pl.equipItem(itemId);
 						el.setAttribute('data-equipped', '');
 					}
-					showInventory();
+					showInventory(inv_items.scrollTop);
 					g.emit('draw');
 				}
 			}(i)) );
+		}
+		
+		if(+scroll){
+			inv_items.scrollTop = scroll;
+			setTimeout(function (){
+				inv_items.scrollTop = scroll;
+			}, 10);
 		}
 	}
 	
