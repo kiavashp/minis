@@ -123,6 +123,12 @@ g.addsprite(
 		frames: g.sprite_frames.IDLE_MV(0,1000)
 	})(
 	
+	// grey hood
+	"grey_idle_hood", {
+		image: g.image("./assets/armor/cloth/grey_hood.png"),
+		frames: g.sprite_frames.IDLE_MV(0,0,0,-10)
+	})(
+	
 	// white bandana
 	"white_idle_bandana", {
 		image: g.image("./assets/armor/cloth/white_bandana.png"),
@@ -190,6 +196,12 @@ g.addsprite(
 	"blue_run_leg_right", {
 		image: g.image("./assets/character/blue.png"),
 		frames: g.sprite_frames.RUN_MV(0,1000)
+	})(
+	
+	// grey hood
+	"grey_run_hood", {
+		image: g.image("./assets/armor/cloth/grey_hood.png"),
+		frames: g.sprite_frames.RUN_MV(0,0,0,-10)
 	})(
 	
 	// white bandana
@@ -271,6 +283,12 @@ g.addsprite(
 	"blue_fall_leg_right", {
 		image: g.image("./assets/character/blue.png"),
 		frames: g.sprite_frames.FALL_MV(0,1000)
+	})(
+	
+	// grey hood
+	"grey_fall_hood", {
+		image: g.image("./assets/armor/cloth/grey_hood.png"),
+		frames: g.sprite_frames.FALL_MV(0,0,0,-10)
 	})(
 	
 	// white bandana

@@ -49,7 +49,16 @@ g.additem = function (id, name, item){
 
 g.additem(
 	
-	'001', "White Bandana", {
+	'001', "Grey Hood", {
+		armor_space: 'head',
+		sprites: {
+			'idle': g.sprites['grey_idle_hood'],
+			'run': g.sprites['grey_run_hood'],
+			'fall': g.sprites['grey_fall_hood']
+		}
+	})(
+	
+	'002', "White Bandana", {
 		armor_space: 'head',
 		sprites: {
 			'idle': g.sprites['white_idle_bandana'],
@@ -58,7 +67,7 @@ g.additem(
 		}
 	})(
 	
-	'002', "Gold Crown", {
+	'003', "Gold Crown", {
 		armor_space: 'head',
 		sprites: {
 			'idle': g.sprites['gold_idle_crown'],
@@ -67,7 +76,7 @@ g.additem(
 		}
 	})(
 	
-	'003', "Steel Dagger", {
+	'004', "Steel Dagger", {
 		armor_space: 'right_wield',
 		sprites: {
 			'idle': g.sprites['steel_idle_dagger'],
@@ -76,7 +85,7 @@ g.additem(
 		}
 	})(
 	
-	'004', "Steel Sword", {
+	'005', "Steel Sword", {
 		armor_space: 'right_wield',
 		sprites: {
 			'idle': g.sprites['steel_idle_sword'],
@@ -85,7 +94,7 @@ g.additem(
 		}
 	})(
 	
-	'005', "Dark Shoulder", {
+	'006', "Dark Shoulder", {
 		armor_space: 'right_arm',
 		sprites: {
 			'idle': g.sprites['dark_idle_arm_right'],
@@ -94,7 +103,7 @@ g.additem(
 		}
 	})(
 	
-	'006', "Dark Plate", {
+	'007', "Dark Plate", {
 		armor_space: 'chest',
 		sprites: {
 			'idle': g.sprites['dark_idle_chest'],
@@ -103,7 +112,7 @@ g.additem(
 		}
 	})(
 	
-	'007', "Red Mage Book", {
+	'008', "Red Mage Book", {
 		armor_space: 'left_wield',
 		sprites: {
 			'idle': g.sprites['red_idle_book'],
