@@ -58,7 +58,16 @@ g.additem(
 		}
 	})(
 	
-	'002', "Steel Dagger", {
+	'002', "Gold Crown", {
+		armor_space: 'head',
+		sprites: {
+			'idle': g.sprites['gold_idle_crown'],
+			'run': g.sprites['gold_run_crown'],
+			'fall': g.sprites['gold_fall_crown']
+		}
+	})(
+	
+	'003', "Steel Dagger", {
 		armor_space: 'right_wield',
 		sprites: {
 			'idle': g.sprites['steel_idle_dagger'],
@@ -67,7 +76,16 @@ g.additem(
 		}
 	})(
 	
-	'003', "Dark Shoulder", {
+	'004', "Steel Sword", {
+		armor_space: 'right_wield',
+		sprites: {
+			'idle': g.sprites['steel_idle_sword'],
+			'run': g.sprites['steel_run_sword'],
+			'fall': g.sprites['steel_fall_sword']
+		}
+	})(
+	
+	'005', "Dark Shoulder", {
 		armor_space: 'right_arm',
 		sprites: {
 			'idle': g.sprites['dark_idle_arm_right'],
@@ -76,7 +94,7 @@ g.additem(
 		}
 	})(
 	
-	'004', "Dark Plate", {
+	'006', "Dark Plate", {
 		armor_space: 'chest',
 		sprites: {
 			'idle': g.sprites['dark_idle_chest'],
@@ -85,7 +103,7 @@ g.additem(
 		}
 	})(
 	
-	'005', "Red Mage Book", {
+	'007', "Red Mage Book", {
 		armor_space: 'left_wield',
 		sprites: {
 			'idle': g.sprites['red_idle_book'],

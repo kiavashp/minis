@@ -41,11 +41,14 @@ g.sprite_frames = {
 		{ image: [320, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [480, 0, 160, 200], draw: [0, 0, 80, 100] }
 	],
-	IDLE_MX: function (x){ return [
-			{ image: [0, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [160, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [320, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [480, x, 160, 200], draw: [0, 0, 80, 100] }
+	// move/translate image or draw initial coordinates
+	IDLE_MV: function (ix, iy, dx, dy){
+		ix = +ix || 0; iy = +iy || 0; dx = +dx || 0; dy = +dy || 0;
+		return [
+			{ image: [ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [160 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [320 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [480 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] }
 	] },
 	RUN: [
 		{ image: [640, 0, 160, 200], draw: [0, 0, 80, 100] },
@@ -57,25 +60,31 @@ g.sprite_frames = {
 		{ image: [1600, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [1760, 0, 160, 200], draw: [0, 0, 80, 100] }
 	],
-	RUN_MX: function (x){ return [
-			{ image: [640, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [800, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [960, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [1120, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [1280, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [1440, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [1600, x, 160, 200], draw: [0, 0, 80, 100] },
-			{ image: [1760, x, 160, 200], draw: [0, 0, 80, 100] }
+	// move/translate image or draw initial coordinates
+	RUN_MV: function (ix, iy, dx, dy){
+		ix = +ix || 0; iy = +iy || 0; dx = +dx || 0; dy = +dy || 0;
+		return [
+			{ image: [640 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [800 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [960 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [1120 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [1280 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [1440 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [1600 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+			{ image: [1760 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] }
 	] },
 	FALL: [
 		{ image: [1920, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [2080, 0, 160, 200], draw: [0, 0, 80, 100] },
 		{ image: [2240, 0, 160, 200], draw: [0, 0, 80, 100] }
 	],
-	FALL_MX: function (x){ return [
-		{ image: [1920, x, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2080, x, 160, 200], draw: [0, 0, 80, 100] },
-		{ image: [2240, x, 160, 200], draw: [0, 0, 80, 100] }
+	// move/translate image or draw initial coordinates
+	FALL_MV: function (ix, iy, dx, dy){
+		ix = +ix || 0; iy = +iy || 0; dx = +dx || 0; dy = +dy || 0;
+		return [
+		{ image: [1920 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+		{ image: [2080 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] },
+		{ image: [2240 +ix, iy, 160, 200], draw: [dx, dy, 80, 100] }
 	] },
 };
 g.sprites = {};
@@ -95,23 +104,23 @@ g.addsprite(
 	})(
 	"blue_idle_chest", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MX(200)
+		frames: g.sprite_frames.IDLE_MV(0,200)
 	})(
 	"blue_idle_arm_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MX(400)
+		frames: g.sprite_frames.IDLE_MV(0,400)
 	})(
 	"blue_idle_arm_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MX(600)
+		frames: g.sprite_frames.IDLE_MV(0,600)
 	})(
 	"blue_idle_leg_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MX(800)
+		frames: g.sprite_frames.IDLE_MV(0,800)
 	})(
 	"blue_idle_leg_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MX(1000)
+		frames: g.sprite_frames.IDLE_MV(0,1000)
 	})(
 	
 	// white bandana
@@ -120,10 +129,22 @@ g.addsprite(
 		frames: g.sprite_frames.IDLE
 	})(
 	
+	// gold crown
+	"gold_idle_crown", {
+		image: g.image("./assets/armor/misc/gold_crown.png"),
+		frames: g.sprite_frames.IDLE_MV(0,0,0,-20)
+	})(
+	
 	// steel dagger
 	"steel_idle_dagger", {
 		image: g.image("./assets/weapon/dagger/steel.png"),
 		frames: g.sprite_frames.IDLE
+	})(
+	
+	// steel sword
+	"steel_idle_sword", {
+		image: g.image("./assets/weapon/sword/steel.png"),
+		frames: g.sprite_frames.IDLE_MV(0,0,10,10)
 	})(
 	
 	// dark arm right
@@ -152,29 +173,35 @@ g.addsprite(
 	})(
 	"blue_run_chest", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MX(200)
+		frames: g.sprite_frames.RUN_MV(0,200)
 	})(
 	"blue_run_arm_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MX(400)
+		frames: g.sprite_frames.RUN_MV(0,400)
 	})(
 	"blue_run_arm_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MX(600)
+		frames: g.sprite_frames.RUN_MV(0,600)
 	})(
 	"blue_run_leg_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MX(800)
+		frames: g.sprite_frames.RUN_MV(0,800)
 	})(
 	"blue_run_leg_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MX(1000)
+		frames: g.sprite_frames.RUN_MV(0,1000)
 	})(
 	
 	// white bandana
 	"white_run_bandana", {
 		image: g.image("./assets/armor/cloth/white_bandana.png"),
 		frames: g.sprite_frames.RUN
+	})(
+	
+	// gold crown
+	"gold_run_crown", {
+		image: g.image("./assets/armor/misc/gold_crown.png"),
+		frames: g.sprite_frames.RUN_MV(0,0,0,-20)
 	})(
 	
 	// steel dagger
@@ -191,6 +218,12 @@ g.addsprite(
 			{ image: [1590, 0, 160, 200], draw: [-5, 0, 80, 100] },
 			{ image: [1750, 0, 160, 200], draw: [-5, 0, 80, 100] }
 		]
+	})(
+	
+	// steel sword
+	"steel_run_sword", {
+		image: g.image("./assets/weapon/sword/steel.png"),
+		frames: g.sprite_frames.RUN_MV(0,0,10,10)
 	})(
 	
 	// dark arm right
@@ -221,29 +254,35 @@ g.addsprite(
 	})(
 	"blue_fall_chest", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MX(200)
+		frames: g.sprite_frames.FALL_MV(0,200)
 	})(
 	"blue_fall_arm_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MX(400)
+		frames: g.sprite_frames.FALL_MV(0,400)
 	})(
 	"blue_fall_arm_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MX(600)
+		frames: g.sprite_frames.FALL_MV(0,600)
 	})(
 	"blue_fall_leg_left", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MX(800)
+		frames: g.sprite_frames.FALL_MV(0,800)
 	})(
 	"blue_fall_leg_right", {
 		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MX(1000)
+		frames: g.sprite_frames.FALL_MV(0,1000)
 	})(
 	
 	// white bandana
 	"white_fall_bandana", {
 		image: g.image("./assets/armor/cloth/white_bandana.png"),
 		frames: g.sprite_frames.FALL
+	})(
+	
+	// gold crown
+	"gold_fall_crown", {
+		image: g.image("./assets/armor/misc/gold_crown.png"),
+		frames: g.sprite_frames.FALL_MV(0,0,0,-20)
 	})(
 	
 	// steel dagger
@@ -255,6 +294,12 @@ g.addsprite(
 			{ image: [2070, 0, 160, 200], draw: [-5, 0, 80, 100] },
 			{ image: [2230, 0, 160, 200], draw: [-5, 0, 80, 100] }
 		]
+	})(
+	
+	// steel sword
+	"steel_fall_sword", {
+		image: g.image("./assets/weapon/sword/steel.png"),
+		frames: g.sprite_frames.FALL_MV(0,0,10,10)
 	})(
 	
 	// dark arm right
