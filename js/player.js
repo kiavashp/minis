@@ -11,17 +11,17 @@ function Player (options, game){
 	
 	player.items = {};
 	player.armor = {
-		head: null, // || g.items['White Bandana'],
-		chest: null, // || g.items['Dark Plate'],
+		head: null,
+		chest: null,
 		
 		left_leg: null,
 		right_leg: null,
 		
 		left_arm: null,
-		right_arm: null, // || g.items['Dark Shoulder'],
+		right_arm: null,
 		
-		left_wield: null, // || g.items['Red Mage Book'],
-		right_wield: null, // || g.items['Steel Dagger'],
+		left_wield: null,
+		right_wield: null,
 		
 		back: null
 	}
