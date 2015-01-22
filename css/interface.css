@@ -59,7 +59,22 @@ margin-bottom:0;
 /* END Player Stats */
 
 /* START Touch Controls */
-#touch-ctrl {position:absolute;bottom:0;left:0;right:0;padding:10px}
+#touch-ctrl {
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:10px;
+
+transition:.2s bottom ease;
+-webkit-transition:.2s bottom ease;
+-moz-transition:.2s bottom ease;
+-ms-transition:.2s bottom ease;
+-o-transition:.2s bottom ease;
+}
+#touch-ctrl.down {
+bottom:-90px;
+}
 #touch-ctrl .ctrl {
 float:left;margin:0 10px;width:40px;height:40px;
 background-image:url(../assets/interface/ctrl-buttons.png);background-size:auto 80px;}

@@ -69,6 +69,7 @@ window.addEventListener('load', function (){
 		var el = this;
 		if(inventory.classList.contains('show')){
 			el.classList.remove('active');
+			touch_ctrl.classList.remove('down');
 			inventory.classList.remove('show');
 			g.emit('start');
 			setTimeout(function (){
@@ -78,6 +79,7 @@ window.addEventListener('load', function (){
 			}, 200);
 		}else{
 			inventory.classList.remove('hide');
+			touch_ctrl.classList.add('down');
 			setTimeout(function (){
 				inventory.classList.add('show');
 			}, 10);
