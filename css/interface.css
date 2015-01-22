@@ -6,7 +6,7 @@ top:0;
 width:200px;
 margin:10px;
 padding:5px;
-background:#ffffff;
+background:rgba(255,255,255,0.75);
 }
 #player-stats .p-stat {
 display:block;
@@ -14,7 +14,7 @@ position:relative;
 line-height:26px;
 height:26px;
 margin-bottom:5px;
-background:#888888;
+background:rgba(0,0,0,0.3);
 font-family:Monaco,Menlo,monospace;
 font-size:14px;
 color:#ffffff;
