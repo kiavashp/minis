@@ -126,25 +126,33 @@ Player.prototype.equipItem = function (itemId){
 		id = itemId +'',
 		item = self.items[id];
 	
-	if(!item || !item.it)
+	if(!item || !item.it){
 		return !!user.warn('You don\'t have item ('+ id +')');
-	if(!(item.it.armor_space in self.armor))
+	}
+	if(!(item.it.armor_space in self.armor)){
 		return !!user.warn('You cannot equip item ('+ item.it.name +')');
+	}
+	
+	if(self.armor[item.it.armor_space]){
+		self.unequipItem(self.armor[item.it.armor_space].id);
+	}
 	
 	self.armor[item.it.armor_space] = self.items[id].it;
 	
-	user.notify( item.it.name +' equipped');
+	user.notify( item.it.name +' equipped' );
 }
 Player.prototype.unequipItem = function (itemId){
 	var self = this,
 		id = itemId +'',
 		item = self.items[id];
 	
-	if(!item || !item.it)
+	if(!item || !item.it){
 		return !!user.warn('You don\'t have item ('+ id +')');
+	}
 	
-	if(self.armor[item.it.armor_space] == item.it)
+	if(self.armor[item.it.armor_space] == item.it){
 		self.armor[item.it.armor_space] = null;
+	}
 	
 	user.notify( item.it.name +' unequipped');
 }
