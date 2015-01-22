@@ -43,7 +43,6 @@ g.once('ready', function (){
 g.on('start', function frame (){
 	var game = this;
 	game._running = true;
-	game._.setTransform(cnst.pixelratio, 0, 0, cnst.pixelratio, 0, 0);
 	game.nextframe = cnst.animframe(frame.bind(game));
 	game.emit('update');
 });
@@ -67,6 +66,7 @@ g.on('update', function (){
 
 g.on('draw', function (){
 	var a, game = this;
+	game._.setTransform(cnst.pixelratio, 0, 0, cnst.pixelratio, 0, 0);
 //	game._.clearRect(0, 0, game.w, game.h);
 	game._.fillStyle = '#6B6249';
 	game._.fillRect(0, 0, game.w, game.h);
