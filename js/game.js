@@ -71,9 +71,6 @@ g.on('draw', function (){
 	game._.fillStyle = '#6B6249';
 	game._.fillRect(0, 0, game.w, game.h);
 	
-	// draw ground
-//	game._.fillStyle = ground_pattern || '#bbbbbb';
-//	game._.fillRect(game.frame.x, game.frame.y + game.ground, game.w, game.groundheight);
 	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
 	
 	for(a=0;a<game.actors.length;a++) game.actors[a].draw();
@@ -109,14 +106,6 @@ w.on('DOMContentLoaded', function (){
 	
 	var a = 'ackingStorePixelRatio', b = 'equestAnimationFrame', c = 'ancelAnimationFrame';
 	cnst.pixelratio = (w.devicePixelRatio||1)/(g._['webkitB'+a]||g._['mozB'+a]||1);
-	/*
-	cnst.animframe = function(f){
-		return setTimeout(f, 16);
-	};
-	cnst.stopframe = function(t){
-		clearTimeout(t);
-	};
-	*/
 	
 	cnst.animframe = (w['r'+b]||w['webkitR'+b]||w['mozR'+b]||function(f){return setTimeout(f,16)}).bind(w);
 	cnst.stopframe = (w['c'+c]||w['webkitC'+c]||w['mozC'+c]||function(t){clearTimeout(t)}).bind(w);
