@@ -126,4 +126,6 @@ w.on('DOMContentLoaded', function (){
 	g.emit('start');
 });
 
+w.on('load', function (){ g.emit('resize', true); });
+
 w.on('resize', function (){ g.emit('resize', g._running); });
