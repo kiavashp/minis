@@ -1,7 +1,9 @@
 window.mobile = 'standalone' in navigator;
 window.addEventListener('load', function (){
 	
-	if(mobile) document.body.classList.add('mobile');
+	if(mobile){
+		document.body.classList.add('mobile');
+	}
 	
 	// START Touch Controls
 	var touch_ctrl = document.getElementById('touch-ctrl'),
@@ -9,8 +11,8 @@ window.addEventListener('load', function (){
 		touch_right = document.getElementById('touch-right-ctrl'),
 		touch_up = document.getElementById('touch-up-ctrl');
 	
-	if(mobile && touch_ctrl){
-		touch_ctrl.style.display = 'block';
+	if(mobile){
+		touch_ctrl.classList.add('show');
 	}
 	
 	if(typeof eleKeySim === 'function'){

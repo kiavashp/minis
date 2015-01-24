@@ -61,24 +61,11 @@ background:#343842;
 background:#7f2222;
 }
 
-/* mobile player stats *//*
-body.mobile #player-stats {
-width:140px;
-padding:3px;
-}
-body.mobile #player-stats .p-stat {
-font-size:12px;
-line-height:22px;
-height:22px;
-margin-bottom:3px;
-}
-body.mobile #player-stats .p-stat:last-child {
-margin-bottom:0;
-}*/
 /* END Player Stats */
 
 /* START Touch Controls */
 #touch-ctrl {
+display:none;
 position:absolute;
 bottom:0;
 left:0;
@@ -90,6 +77,9 @@ transition:.3s bottom ease;
 -moz-transition:.3s bottom ease;
 -ms-transition:.3s bottom ease;
 -o-transition:.3s bottom ease;
+}
+#touch-ctrl.show {
+display:block;
 }
 #touch-ctrl.down {
 bottom:-90px;
