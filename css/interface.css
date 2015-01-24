@@ -1,20 +1,19 @@
 /* START Player Stats */
 #player-stats {
 position:absolute;
-left:0;
-top:0;
+left:10px;
+top:10px;
 width:200px;
-margin:10px;
-padding:5px;
+padding:4px;
 background:rgba(255,255,255,0.75);
 }
 #player-stats .p-stat {
 display:block;
 overflow:hidden;
 position:relative;
-line-height:26px;
-height:26px;
-margin-bottom:5px;
+line-height:24px;
+height:24px;
+margin-bottom:4px;
 background:rgba(0,0,0,0.3);
 font-family:Monaco,Menlo,monospace;
 font-size:14px;
@@ -62,7 +61,7 @@ background:#343842;
 background:#7f2222;
 }
 
-/* mobile player stats */
+/* mobile player stats *//*
 body.mobile #player-stats {
 width:140px;
 padding:3px;
@@ -75,7 +74,7 @@ margin-bottom:3px;
 }
 body.mobile #player-stats .p-stat:last-child {
 margin-bottom:0;
-}
+}*/
 /* END Player Stats */
 
 /* START Touch Controls */
@@ -112,14 +111,12 @@ top:10px;
 right:10px;
 width:40px;
 height:40px;
-/*background:rgba(255,255,255,0.5);*/
 background-image:url(../assets/interface/ctrl-buttons.png);
 background-size:auto 80px;
 background-position:-140px 0;
 z-index:1001;
 }
 #inventory_button.active, #inventory_button:active {
-/*background:rgba(255,255,255,0.75);*/
 background-position-y:-40px;
 }
 #inventory {
@@ -181,11 +178,6 @@ transition:.1s background ease;
 -moz-transition:.1s background ease;
 -ms-transition:.1s background ease;
 -o-transition:.1s background ease;
-/*
-border-left:2px solid transparent;
-box-shadow:inset 0 -1px 0 rgba(255,255,255,0.2);
-margin-bottom:2px;
-*/
 }
 .inv_items .item:active {
 background:rgba(255,255,255,0.05);
