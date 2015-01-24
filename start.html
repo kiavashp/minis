@@ -11,6 +11,7 @@ right:0;
 bottom:0;
 background-color:#5672b7;
 }
+/* ground */
 #start_screen:before {
 content:'';
 display:block;
@@ -20,11 +21,10 @@ right:150px;
 bottom:0;
 height:80px;
 background-image:url('./assets/interface/start_screen.png');
-background-position:0px -740px;
-
 background-position:100% -740px;
 background-repeat:no-repeat;
 }
+/* tree */
 #start_screen:after {
 content:'';
 position:absolute;
@@ -32,35 +32,155 @@ right:0;
 bottom:0;
 width:500px;
 height:740px;
+max-width:50%;
 background-image:url('./assets/interface/start_screen.png');
 background-position:-1040px 0px;
 }
-#start_screen_content {
+.start_screen_content {
 position:absolute;
 left:0;
 top:0;
 right:0;
 bottom:0;
 margin:auto;
-max-width:800px;
-max-height:500px;
+max-width:1070px;
+max-height:600px;
 }
 .logo {
 position:relative;
-left:40px;
+left:120px;
 width:540px;
 height:160px;
 background-image:url('./assets/interface/start_screen.png');
 background-position:-500px -160px;
 }
+#start_characters {
+position:absolute;
+left:-100%;
+bottom:40px;
+width:620px;
+height:420px;
+
+transition:1s left ease;
+-webkit-transition:1s left ease;
+-moz-transition:1s left ease;
+-ms-transition:1s left ease;
+-o-transition:1s left ease;
+}
+#start_characters:after {
+content:'';
+display:block;
+position:absolute;
+left:0;
+bottom:0;
+width:620px;
+height:420px;
+background-image:url('./assets/interface/start_screen.png');
+background-position:-420px -320px;
+}
+#start_characters.in {
+left:10px;
+}
+#start_characters .start_characters_content {
+display:block;
+overflow:hidden;
+position:relative;
+left:100px;
+top:350px;
+width:480px;
+height:0px;
+background:rgba(0,0,0,0.1);
+
+transition:.4s top ease, .4s height ease;
+-webkit-transition:.4s top ease, .4s height ease;
+}
+#start_characters.in.show .start_characters_content {
+top:50px;
+height:300px;
+}
+#start_characters.in.show.raise .character-menu,
+#start_characters.in.show.raise table.character-table {
+position:relative;
+z-index:101;
+}
+.start_characters_content .character-menu{
+display:block;
+height:50px;
+}
+.start_characters_content .character-table-shadow {
+position:absolute;
+top:50px;
+right:0;
+left:0;
+bottom:0;
+background:rgba(0,0,0,0.1);
+}
+.start_characters_content table.character-table {
+overflow-x:hidden;
+overflow-y:scroll;
+width:100%;
+max-height:220px;
+text-align:left;
+line-height:28px;
+font-family:Monaco,Menlo,monospace;
+font-size:16px;
+color:#ffffff;
+padding:10px 40px 0px 40px;
+cursor:default;
+}
+table.character-table tbody tr:hover{
+background:rgba(0,0,0,0.1);
+}
+table.character-table td,
+table.character-table th {
+padding:4px 8px;
+}
+table.character-table thead {
+color:rgba(255,255,255,0.5);
+font-size:14px;
+}
+table.character-table tbody {
+}
+table.character-table td:last-child,
+table.character-table th:last-child {
+text-align:right;
+}
 </style>
 <script>
-
+window.addEventListener('load', function (ev){
+	var start_char = document.getElementById('start_characters');
+	setTimeout(function (){
+		start_char.classList.add('in');
+		setTimeout(function (){
+			start_char.classList.add('show');
+			setTimeout(function (){
+				start_char.classList.add('raise');
+			}, 400);
+		}, 1000);
+	}, 0);
+});
 </script>
 
 <div id="start_screen">
-	<div id="start_screen_content">
+	<div class="start_screen_content">
 		<div class="logo"></div>
-		
+		<div id="start_characters">
+			<div class="start_characters_content">
+				<div class="character-menu"></div>
+				<div class="character-table-shadow"></div>
+				<table class="character-table">
+					<thead>
+						<tr> <th>name</th> <th>lvl</th> <th>time</th> </tr>
+					</thead>
+					<tbody>
+						<tr> <td>Character Name 1</td> <td>52</td> <td>21:32</td> </tr>
+						<tr> <td>Character Name 2</td> <td>17</td> <td>4:16</td> </tr>
+						<tr> <td>Character Name 3</td> <td>34</td> <td>5:08</td> </tr>
+						<tr> <td>Character Name 4</td> <td>6</td> <td>0:57</td> </tr>
+						<tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
