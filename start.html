@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+<link rel="stylesheet" type="text/css" href="./css/touch.css"/>
+<link rel="stylesheet" type="text/css" href="./css/interface.css"/>
+
+<style>
+#start_screen {
+position:absolute;
+left:0;
+top:0;
+right:0;
+bottom:0;
+background-color:#5672b7;
+}
+#start_screen:before {
+content:'';
+display:block;
+position:absolute;
+left:0;
+right:150px;
+bottom:0;
+height:80px;
+background-image:url('./assets/interface/start_screen.png');
+background-position:0px -740px;
+
+background-position:100% -740px;
+background-repeat:no-repeat;
+}
+#start_screen:after {
+content:'';
+position:absolute;
+right:0;
+bottom:0;
+width:500px;
+height:740px;
+background-image:url('./assets/interface/start_screen.png');
+background-position:-1040px 0px;
+}
+#start_screen_content {
+position:absolute;
+left:0;
+top:0;
+right:0;
+bottom:0;
+margin:auto;
+max-width:800px;
+max-height:500px;
+}
+.logo {
+position:relative;
+left:40px;
+width:540px;
+height:160px;
+background-image:url('./assets/interface/start_screen.png');
+background-position:-500px -160px;
+}
+</style>
+<script>
+
+</script>
+
+<div id="start_screen">
+	<div id="start_screen_content">
+		<div class="logo"></div>
+		
+	</div>
+</div>
