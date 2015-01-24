@@ -106,14 +106,17 @@ left:100px;
 top:350px;
 width:480px;
 height:0px;
-background:rgba(0,0,0,0.1);
+
+font-family:Monaco,Menlo,monospace;
+font-size:16px;
+color:#ffffff;
 
 transition:.4s top ease, .4s height ease;
 -webkit-transition:.4s top ease, .4s height ease;
 }
 #start_characters.in.show .start_characters_content {
 top:50px;
-height:300px;
+height:310px;
 }
 #start_characters.in.show.raise .character-menu,
 #start_characters.in.show.raise table.character-table {
@@ -122,11 +125,14 @@ z-index:101;
 }
 .start_characters_content .character-menu{
 display:block;
-height:50px;
+padding:0 10px;
+height:60px;
+line-height:60px;
+font-size:28px;
 }
 .start_characters_content .character-table-shadow {
 position:absolute;
-top:50px;
+top:60px;
 right:0;
 left:0;
 bottom:0;
@@ -135,37 +141,141 @@ background:rgba(0,0,0,0.1);
 .start_characters_content table.character-table {
 overflow-x:hidden;
 overflow-y:scroll;
-width:100%;
+width:440px;
 max-height:220px;
 text-align:left;
 line-height:28px;
-font-family:Monaco,Menlo,monospace;
-font-size:16px;
 color:#ffffff;
-padding:10px 40px 0px 40px;
+border-collapse:collapse;
+margin:10px 20px 0 20px;
 cursor:default;
 }
-table.character-table tbody tr:hover{
+table.character-table tbody tr:active,
+table.character-table tbody tr.active{
 background:rgba(0,0,0,0.1);
 }
 table.character-table td,
 table.character-table th {
-padding:4px 8px;
+padding:4px 16px;
 }
 table.character-table thead {
 color:rgba(255,255,255,0.5);
 font-size:14px;
 }
-table.character-table tbody {
-}
-table.character-table td:last-child,
-table.character-table th:last-child {
+table.character-table td:not(:first-child),
+table.character-table th:not(:first-child) {
 text-align:right;
+}
+.start_characters_content .character-ctrls {
+display:none;
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+z-index:101;
+height:34px;
+padding:8px 24px;
+margin-top:10px;
+}
+.start_characters_content .character-ctrls.show {
+display:block;
+}
+.character-ctrls .char-ctrl {
+height:28px;
+line-height:26px;
+width:100px;
+border:3px solid #ffffff;
+border-radius:5px;
+background:#888888;
+text-align:center;
+cursor:default;
+
+box-shadow:2px 4px 0 rgba(0,0,0,0.1);
+-webkit-box-shadow:2px 4px 0 rgba(0,0,0,0.1);
+-moz-box-shadow:2px 4px 0 rgba(0,0,0,0.1);
+-ms-box-shadow:2px 4px 0 rgba(0,0,0,0.1);
+-o-box-shadow:2px 4px 0 rgba(0,0,0,0.1);
+}
+.character-ctrls .char-ctrl.delete-character {
+float:left;
+background:#aa6666;
+}
+.character-ctrls .char-ctrl.load-character {
+float:right;
+background:#66aa66;
+}
+.character-ctrls .char-ctrl.delete-character:active {
+background:#884444;
+border-color:#cccccc;
+}
+.character-ctrls .char-ctrl.load-character:active {
+background:#448844;
+border-color:#cccccc;
 }
 </style>
 <script>
 window.addEventListener('load', function (ev){
-	var start_char = document.getElementById('start_characters');
+	
+	var start_char = document.getElementById('start_characters'),
+		char_table = start_char.querySelector('.character-table'),
+		char_ctrls = start_char.querySelector('.character-ctrls'),
+		active_char;
+	
+	char_table.addEventListener('click', function (ev){
+		var target = ev.target || ev.targetElement || ev.srcElement,
+			char_id;
+		
+		while(target && target.nodeName != 'TR'){
+			target = target.parentNode;
+			if(!target || target === char_table || !target.nodeName) return;
+		}
+		
+		char_id = target.getAttribute('data-char-id');
+		
+		if(active_char){
+			active_char.classList.remove('active');
+		}
+		
+		if(!char_id){
+			char_ctrls.classList.remove('show');
+			return;
+		}
+		
+		target.classList.add('active');
+		active_char = target;
+		
+		char_ctrls.setAttribute('data-char-id', char_id);
+		
+		char_ctrls.classList.add('show');
+		
+	});
+	
+	char_ctrls.addEventListener('click', function (ev){
+		var target = ev.target || ev.targetElement || ev.srcElement,
+			char_id = char_ctrls.getAttribute('data-char-id'),
+			action;
+		
+		if(!char_id) return;
+		
+		while(target && !target.classList.contains('char-ctrl')){
+			target = target.parentNode;
+			if(!target || target === char_ctrls || !target.classList) return;
+		}
+		
+		action = target.getAttribute('data-char-act');
+		
+		if(action == 'delete'){
+			
+			console.log('deleted character: '+ char_id);
+			
+		}else if(action == 'load'){
+			
+			console.log('loading character: '+ char_id);
+			
+		}
+		
+	});
+	
 	setTimeout(function (){
 		start_char.classList.add('in');
 		setTimeout(function (){
@@ -175,6 +285,7 @@ window.addEventListener('load', function (ev){
 			}, 400);
 		}, 1000);
 	}, 0);
+	
 });
 </script>
 
@@ -183,19 +294,23 @@ window.addEventListener('load', function (ev){
 		<div class="logo"></div>
 		<div id="start_characters">
 			<div class="start_characters_content">
-				<div class="character-menu"></div>
+				<div class="character-menu">characters</div>
 				<div class="character-table-shadow"></div>
 				<table class="character-table">
 					<thead>
 						<tr> <th>name</th> <th>lvl</th> <th>time</th> </tr>
 					</thead>
 					<tbody>
-						<tr> <td>Character Name 1</td> <td>52</td> <td>21:32</td> </tr>
-						<tr> <td>Character Name 2</td> <td>17</td> <td>4:16</td> </tr>
-						<tr> <td>Character Name 3</td> <td>34</td> <td>5:08</td> </tr>
-						<tr> <td>Character Name 4</td> <td>6</td> <td>0:57</td> </tr>
+						<tr data-char-id="1"> <td>Character Name 1</td> <td>52</td> <td>21:32</td> </tr>
+						<tr data-char-id="2"> <td>Character Name 2</td> <td>17</td> <td>4:16</td> </tr>
+						<tr data-char-id="3"> <td>Character Name 3</td> <td>34</td> <td>5:08</td> </tr>
+						<tr data-char-id="4"> <td>Character Name 4</td> <td>6</td> <td>0:57</td> </tr>
 					</tbody>
 				</table>
+				<div class="character-ctrls" data-char-id="">
+					<div class="char-ctrl delete-character" data-char-act="delete">delete</div>
+					<div class="char-ctrl load-character" data-char-act="load">play</div>
+				</div>
 			</div>
 		</div>
 	</div>
