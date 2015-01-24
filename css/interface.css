@@ -10,6 +10,7 @@ background:rgba(255,255,255,0.75);
 }
 #player-stats .p-stat {
 display:block;
+overflow:hidden;
 position:relative;
 line-height:26px;
 height:26px;
@@ -22,14 +23,33 @@ color:#ffffff;
 #player-stats .p-stat:last-child {
 margin-bottom:0;
 }
+
+/* Player Stats :: stats text */
+#player-stats .p-stat[data-stat-alt]:before,
 #player-stats .p-stat[data-stat]:after {
-content:attr(data-stat-prefix)" "attr(data-stat);
 position:absolute;
 left:0;
-top:0;
 right:0;
+height:100%;
 text-align:center;
+
+transition:.3s top ease;
+-webkit-transition:.3s top ease;
+-moz-transition:.3s top ease;
+-ms-transition:.3s top ease;
+-o-transition:.3s top ease;
 }
+#player-stats .p-stat[data-stat-alt]:before{
+content:attr(data-stat-alt-prefix)" "attr(data-stat-alt);
+top:-100%;
+}
+#player-stats .p-stat[data-stat]:after{
+content:attr(data-stat-prefix)" "attr(data-stat);
+top:0;
+}
+#player-stats .p-stat.alt[data-stat-alt]:before{ top:0; }
+#player-stats .p-stat.alt[data-stat-alt]:after{ top:100%; }
+
 #player-stats .p-stat .bar {
 display:block;
 height:inherit;
@@ -66,11 +86,11 @@ left:0;
 right:0;
 padding:10px;
 
-transition:.2s bottom ease;
--webkit-transition:.2s bottom ease;
--moz-transition:.2s bottom ease;
--ms-transition:.2s bottom ease;
--o-transition:.2s bottom ease;
+transition:.3s bottom ease;
+-webkit-transition:.3s bottom ease;
+-moz-transition:.3s bottom ease;
+-ms-transition:.3s bottom ease;
+-o-transition:.3s bottom ease;
 }
 #touch-ctrl.down {
 bottom:-90px;
@@ -120,11 +140,11 @@ color:#bbbbbb;
 cursor: default;
 z-index: 1000;
 
-transition:.1s right linear/*, .15s opacity ease*/;
--webkit-transition:.1s right linear/*, .15s opacity ease*/;
--moz-transition:.1s right linear/*, .15s opacity ease*/;
--ms-transition:.1s right linear/*, .15s opacity ease*/;
--o-transition:.1s right linear/*, .15s opacity ease*/;
+transition:.2s right linear/*, .15s opacity ease*/;
+-webkit-transition:.2s right linear/*, .15s opacity ease*/;
+-moz-transition:.2s right linear/*, .15s opacity ease*/;
+-ms-transition:.2s right linear/*, .15s opacity ease*/;
+-o-transition:.2s right linear/*, .15s opacity ease*/;
 }
 #inventory ::selection {
 background:rgba(0,0,0,0.4);

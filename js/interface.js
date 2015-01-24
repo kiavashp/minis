@@ -20,6 +20,27 @@ window.addEventListener('load', function (){
 	}
 	// END Touch Controls
 	
+	// START Player Stats
+	var player_stats = document.getElementById('player-stats');
+	
+	player_stats.addEventListener('click', function (ev){
+		var target = ev.target || ev.targetElement || ev.srcElement;
+		
+		while(target && !target.classList.contains('p-stat')){
+			target = target.parentNode;
+			if(target === player_stats) return;
+		}
+		
+		if(target.classList.contains('alt')){
+			target.classList.remove('alt');
+		}else{
+			target.classList.add('alt');
+		}
+		
+		
+	});
+	// END Player Stats
+	
 	// START Inventory
 	function showInventory (scroll){
 		var i, te, pl = g.player;
@@ -65,7 +86,7 @@ window.addEventListener('load', function (){
 		inventory = document.getElementById('inventory'),
 		inv_items = document.querySelector('.inv_items');
 	
-	inv_button.addEventListener('click', function (){
+	inv_button.addEventListener('click', function (ev){
 		var el = this;
 		if(inventory.classList.contains('show')){
 			el.classList.remove('active');
@@ -90,7 +111,5 @@ window.addEventListener('load', function (){
 		}
 	});
 	// END Inventory
-	
-	
 	
 });
