@@ -192,7 +192,20 @@ border-color:#cccccc;
 background:#448844;
 border-color:#cccccc;
 }
-/* mobile styles */
+#add_char {
+display:block;
+position:relative;
+width:60px;
+height:60px;
+float:right;
+background-image:url('../assets/interface/ctrl-buttons.png');
+background-size:auto 120px;
+background-position:-270px 0px;
+}
+#add_char:active {
+background-position-y:60px;
+}
+/* mobile styles start */
 body.mobile #start_screen:before {
 right:75px;
 height:40px;
@@ -276,6 +289,16 @@ width:80px;
 border-width:2px;
 border-radius:3px;
 }
+body.mobile #add_char {
+background-size:auto 80px;
+background-position:-185px -5px;
+width:30px;
+height:30px;
+}
+body.mobile #add_char:active {
+background-position-y:30px;
+}
+/* mobile styles ent */
 /* END Start Screen */
 
 /* START Player Stats */
