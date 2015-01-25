@@ -15,7 +15,8 @@ g = g || new EventEmitter;
 		localStorage.setItem(item, d);
 	}
 	
-	var players = storage.getJSON('players', {});
+	var lastsave = null,
+		players = storage.getJSON('players', {});
 	
 	g.saveCharacter = function (playername){
 		if(typeof playername === 'undefined'){
@@ -131,5 +132,9 @@ g = g || new EventEmitter;
 	window.onbeforeunload = function (){
 		g.saveCharacter();
 	}
+	
+	window.addEventListener('click', function (){
+		if(!lastsave || lastsave < Date.now() - 30e3) g.saveCharacter();
+	});
 	
 }());
