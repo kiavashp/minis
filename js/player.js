@@ -9,6 +9,8 @@ function Player (options, game){
 	var player = this,
 		o = typeof options === 'object' ? options : {};
 	
+	player.xp = o.xp || 0;
+	
 	player.items = {};
 	player.armor = {
 		head: null,
@@ -121,16 +123,18 @@ Player.prototype.draw = function (){
 	
 }
 
-Player.prototype.equipItem = function (itemId){
+Player.prototype.equipItem = function (itemId, silent){
 	var self = this,
 		id = itemId +'',
 		item = self.items[id];
 	
 	if(!item || !item.it){
-		return !!user.warn('You don\'t have item ('+ id +')');
+		!silent && user.warn('You don\'t have item ('+ id +')');
+		return false;
 	}
 	if(!(item.it.armor_space in self.armor)){
-		return !!user.warn('You cannot equip item ('+ item.it.name +')');
+		!silent && user.warn('You cannot equip item ('+ item.it.name +')');
+		return false;
 	}
 	
 	if(self.armor[item.it.armor_space]){
@@ -139,22 +143,23 @@ Player.prototype.equipItem = function (itemId){
 	
 	self.armor[item.it.armor_space] = self.items[id].it;
 	
-	user.notify( item.it.name +' equipped' );
+	!silent && user.notify( item.it.name +' equipped' );
 }
-Player.prototype.unequipItem = function (itemId){
+Player.prototype.unequipItem = function (itemId, silent){
 	var self = this,
 		id = itemId +'',
 		item = self.items[id];
 	
 	if(!item || !item.it){
-		return !!user.warn('You don\'t have item ('+ id +')');
+		!silent && user.warn('You don\'t have item ('+ id +')');
+		return false;
 	}
 	
 	if(self.armor[item.it.armor_space] == item.it){
 		self.armor[item.it.armor_space] = null;
 	}
 	
-	user.notify( item.it.name +' unequipped');
+	!silent && user.notify( item.it.name +' unequipped');
 }
 Player.prototype.isEquipped = function (itemId){
 	var self = this,
@@ -166,13 +171,13 @@ Player.prototype.isEquipped = function (itemId){
 	return self.armor[item.it.armor_space] == item.it;
 }
 
-Player.prototype.addItem = function (itemId, quantity){
+Player.prototype.addItem = function (itemId, quantity, silent){
 	var self = this,
 		it = g.items[itemId +''],
 		quantity = quantity || 1;
 	
 	if(!it){
-		user.warn('invalid item: '+ itemId);
+		!silent && user.warn('invalid item: '+ itemId);
 		return;
 	}
 	
@@ -181,7 +186,7 @@ Player.prototype.addItem = function (itemId, quantity){
 	}
 	self.items[it.id].quantity += quantity;
 	
-	user.notify(quantity +' '+ it.name +'(s) added to inventory');
+	!silent && user.notify(quantity +' '+ it.name +'(s) added to inventory');
 }
 Player.prototype.removeItem = function (itemId, quantity){
 	var self = this,
@@ -189,7 +194,7 @@ Player.prototype.removeItem = function (itemId, quantity){
 		quantity = quantity || 1;
 	
 	if(!it){
-		user.warn('You do not have item: '+ itemId);
+		!silent && user.warn('You do not have item: '+ itemId);
 		return;
 	}
 	
@@ -199,5 +204,5 @@ Player.prototype.removeItem = function (itemId, quantity){
 		delete self.items[it.id];
 	}
 	
-	user.notify(quantity +' '+ it.name +'(s) removed from inventory');
+	!silent && user.notify(quantity +' '+ it.name +'(s) removed from inventory');
 }
