@@ -99,7 +99,15 @@ g = g || new EventEmitter;
 	}
 	
 	g.createCharacter = function (playername){
+		if(playername in players) return false;
 		players[playername] = {};
+		storage.setJSON('players', players);
+	}
+	
+	g.deleteCharacter = function (playername){
+		if(!(playername in players)) return false;
+		delete players[playername];
+		storage.setJSON('players', players);
 	}
 	
 }());
