@@ -37,7 +37,7 @@ g.fps = function (cb){
 g.once('ready', function (){
 	var game = this;
 	Actor.bind(game);
-	game.player = new Player({});
+//	game.player = new Player({});
 });
 
 g.on('start', function frame (){
@@ -58,7 +58,7 @@ g.on('update', function (){
 		now = Date.now(),
 		timeoff = now - game.lastupdate;
 	
-	game.player.update();
+	if(game.player) game.player.update();
 	for(a=0;a<game.actors.length;a++) game.actors[a].update();
 	game.lastupdate = now;
 	game.emit('draw');
@@ -74,7 +74,7 @@ g.on('draw', function (){
 	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
 	
 	for(a=0;a<game.actors.length;a++) game.actors[a].draw();
-	game.player.draw();
+	if(game.player) game.player.draw();
 });
 
 g.on('resize', function (dontdraw){
@@ -112,7 +112,7 @@ w.on('DOMContentLoaded', function (){
 	
 	g.emit('resize', true);
 	g.emit('ready');
-	g.emit('start');
+//	g.emit('start');
 });
 
 w.on('load', function (){ g.emit('resize', true); });
