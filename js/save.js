@@ -152,22 +152,15 @@ g = g || new EventEmitter;
 	}
 	
 	// mobile safari
-	/*window.onpagehide = function (){
+	window.onpagehide = function (){
 		g.saveCharacter();
 	}
-	*/
 	
-	window.addEventListener('popstate', function (){
-		g.saveCharacter();
-	});
-	
-	/*
 	window.addEventListener('click', function (){
 		if(!lastsave || lastsave < Date.now() - 15e3){
 			g.saveCharacter();
 			lastsave = Date.now();
 		}
 	});
-	*/
 	
 }());
