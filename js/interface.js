@@ -14,6 +14,7 @@ window.addEventListener('load', function (){
 			char_table = start_char.querySelector('.character-table'),
 			char_list = document.getElementById('character_list'),
 			char_ctrls = start_char.querySelector('.character-ctrls'),
+			add_char = document.getElementById('add_char'),
 			active_char;
 		
 		char_table.addEventListener('click', function (ev){
@@ -45,6 +46,10 @@ window.addEventListener('load', function (){
 			
 		});
 		
+		add_char.addEventListener('click', function (ev){
+			g.createCharacter(prompt('pick a name for your character'));
+		});
+		
 		char_ctrls.addEventListener('click', function (ev){
 			var target = ev.target || ev.targetElement || ev.srcElement,
 				char_id = char_ctrls.getAttribute('data-char-id'),
@@ -67,7 +72,8 @@ window.addEventListener('load', function (){
 				
 				console.log('deleted character: '+ char_id);
 				
-			}else if(action == 'load'){
+			}
+			else if(action == 'load'){
 				
 				g.loadCharacter(char_id);
 				g.emit('start');
