@@ -1,3 +1,5 @@
+<head>
+
 <title>minis</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -23,6 +25,7 @@
 <!-- game -->
 <script src="./js/game.js"></script>
 <script src="./js/save.js"></script>
+<script src="./js/levels.js"></script>
 <script src="./js/sprites.js"></script>
 <script src="./js/items.js"></script>
 
@@ -30,36 +33,72 @@
 <script src="./js/interface.js"></script>
 <script src="./js/usernotify.js"></script>
 
-<canvas id="can"></canvas>
+</head>
+<body data-screen="start">
 
-<div id="touch-ctrl">
-	<div class="ctrl" id="touch-left-ctrl"></div>
-	<div class="ctrl" id="touch-right-ctrl"></div>
-	
-	<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
-</div>
-
-<div id="player-stats">
-	<div class="p-stat stat-lvl" 
-		data-stat-prefix="LVL" data-stat="52" 
-		data-stat-alt-prefix="XP" data-stat-alt="3042/8000">
-		<i class="bar" style="width:37%;"></i>
+<div id="start_screen" class="screen">
+	<div class="start_screen_content">
+		<div class="logo"></div>
+		<div id="start_characters">
+			<div class="start_characters_content">
+				<div class="character-menu">characters</div>
+				<div class="character-table-shadow"></div>
+				<table class="character-table">
+					<thead>
+						<tr> <th>name</th> <th>lvl</th> <th>time</th> </tr>
+					</thead>
+					<tbody id="character_list">
+						<!--
+						<tr data-char-id="1"> <td>Character Name 1</td> <td>52</td> <td>21:32</td> </tr>
+						<tr data-char-id="2"> <td>Character Name 2</td> <td>17</td> <td>4:16</td> </tr>
+						<tr data-char-id="3"> <td>Character Name 3</td> <td>34</td> <td>5:08</td> </tr>
+						<tr data-char-id="4"> <td>Character Name 4</td> <td>6</td> <td>0:57</td> </tr>
+						-->
+					</tbody>
+				</table>
+				<div class="character-ctrls" data-char-id="">
+					<div class="char-ctrl delete-character" data-char-act="delete">delete</div>
+					<div class="char-ctrl load-character" data-char-act="load">play</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!--<div class="p-stat stat-hp" data-stat-prefix="HP" data-stat="820/1000">
-		<i class="bar" style="width:82%;"></i>
-	</div>-->
 </div>
 
-<div id="inventory_button"></div>
-<div id="inventory">
-	<div class="inv_items touchscroll"></div>
+<div id="game_screen" class="screen">
+	<canvas id="can"></canvas>
+	
+	<div id="touch-ctrl">
+		<div class="ctrl" id="touch-left-ctrl"></div>
+		<div class="ctrl" id="touch-right-ctrl"></div>
+	
+		<div class="ctrl" id="touch-up-ctrl" style="float:right;"></div>
+	</div>
+	
+	<div id="player-stats">
+		<div class="p-stat stat-lvl" 
+			data-stat-prefix="LVL" data-stat="1" 
+			data-stat-alt-prefix="XP" data-stat-alt="0">
+			<i class="bar" style="width:0%;"></i>
+		</div>
+		<div class="p-stat stat-hp" data-stat-prefix="HP" data-stat="0">
+			<i class="bar" style="width:0%;"></i>
+		</div>
+	</div>
+	
+	<div id="inventory_button"></div>
+	<div id="inventory">
+		<div class="inv_items touchscroll"></div>
+	</div>
 </div>
 
 <script>
 w.on('load', function (){
 // temporary stuff for testing
 
-for(var i in g.items) g.player.addItem(i, 1 + (4*Math.random()|0));
+//for(var i in g.items) g.player.addItem(i, 1 + (4*Math.random()|0));
 
 });
 </script>
+
+</body>
