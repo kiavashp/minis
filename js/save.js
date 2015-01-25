@@ -40,7 +40,7 @@ g = g || new EventEmitter;
 		
 		s.stats =  { lvl: null, xp: null, hp: null };
 		s.loc = { map: null, coor: null };
-		s.items = { inv: null, armor: [] };
+		s.items = { inv: null, armor: {} };
 		
 		s.stats.lvl = g.player.lvl;
 		s.stats.xp = g.player.xp;
@@ -54,10 +54,10 @@ g = g || new EventEmitter;
 		for(i in g.player.items){
 			s.items.inv[i] = g.player.items[i].quantity;
 		}
-		s.items.armor = [];
+		s.items.armor = {};
 		for(a in g.player.armor){
 		  if(g.player.armor[a].item){
-			s.items.armor.push(g.player.armor[a].item.id);
+			s.items.armor[g.player.armor[a].item.id] = true;
 		  }
 		}
 		
@@ -109,9 +109,9 @@ g = g || new EventEmitter;
 				for(i in player.items.inv){
 					g.player.addItem(i, player.items.inv[i], true);
 				}
-				if(Array.isArray(player.items.armor)){
-					for(a=0;a<player.items.armor.length;a++){
-						g.player.equipItem(player.items.armor[a], true);
+				if(typeof player.items.armor === 'object'){
+					for(a in player.items.armor){
+						g.player.equipItem(a, true);
 					}
 				}
 			}
@@ -129,7 +129,7 @@ g = g || new EventEmitter;
 			name: playername,
 			stats: { lvl: 1, xp: 0, hp:100 },
 			loc: { map: 1, coor: [], flip: false },
-			items: { inv: {}, armor: [] }
+			items: { inv: {}, armor: {} }
 		};
 		for(var i in g.items) players[playername].items.inv[i] = 1;
 		
@@ -152,7 +152,7 @@ g = g || new EventEmitter;
 	}
 	
 	window.addEventListener('click', function (){
-		if(!lastsave || lastsave < Date.now() - 30e3){
+		if(!lastsave || lastsave < Date.now() - 15e3){
 			g.saveCharacter();
 			lastsave = Date.now();
 		}
