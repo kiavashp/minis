@@ -40,12 +40,22 @@ g.once('ready', function (){
 //	game.player = new Player({});
 });
 
-g.on('start', function frame (){
-	var game = this;
-	game._running = true;
-	game.nextframe = cnst.animframe(frame.bind(game));
-	game.emit('update');
-});
+(function (){
+	
+	function frame (){
+		var game = this;
+		game.nextframe = cnst.animframe(frame.bind(game));
+		game.emit('update');
+	}
+	
+	g.on('start', function (){
+		var game = this;
+		if(game._running) return;
+		game._running = true;
+		frame.call(game);
+	});
+	
+}());
 
 g.on('stop', function (){
 	var game = this;
