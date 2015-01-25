@@ -7,14 +7,29 @@ g.nextframe = null;
 g.lastupdate = Date.now();
 g.keys = {};
 
+/*
+g.map = {
+	w: 3000,
+	h: 2000,
+	gravity: 1,
+	groundheight: 70,
+	ground: innerHeight - 70,
+	blocks: [],
+	draw: function(){}
+}
+*/
+
+/* START to be in g.map */
 g.w = 3000;
 g.h = 2000;
-g.frame = { x: 0, y: 0, w: 0, h: 0, pad: 100 };
 
 g.gravity = 1;
 g.groundheight = 70;
 g.ground = innerHeight - g.groundheight;
 g.blocks = [];
+/* END to be in g.map */
+
+g.frame = { x: 0, y: 0, w: 0, h: 0, pad: 100 };
 
 g.player = null;
 g.actors = [];
@@ -78,10 +93,13 @@ g.on('draw', function (){
 	var a, game = this;
 	game._.setTransform(cnst.pixelratio, 0, 0, cnst.pixelratio, 0, 0);
 //	game._.clearRect(0, 0, game.w, game.h);
+	
+	/* START to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 	game._.fillStyle = '#6B6249';
 	game._.fillRect(0, 0, game.w, game.h);
 	
 	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
+	/* END to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 	
 	for(a=0;a<game.actors.length;a++) game.actors[a].draw();
 	if(game.player) game.player.draw();
