@@ -126,4 +126,8 @@ g = g || new EventEmitter;
 		interfacejs.refreshCharacterList();
 	}
 	
+	window.onbeforeunload = function (){
+		g.saveCharacter();
+	}
+	
 }());
