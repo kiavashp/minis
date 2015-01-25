@@ -1,5 +1,19 @@
 // Constructor: player
 
+function ArmorSlot (slot){
+	if(!(this instanceof ArmorSlot))
+		return new ArmorSlot(slot);
+	this.slot = slot;
+	this.item = null;
+}
+ArmorSlot.prototype.draw = function (){
+	var self = this,
+		args = Array.prototype.slice.call(arguments);
+	args.unshift(self.slot);
+	if(!self.item || typeof self.item.draw !== 'function') return;
+	self.item.draw.apply(self.item, args);
+}
+
 function Player (options, game){
 	if(!(this instanceof Player))
 		return new Player(options, game);
@@ -13,19 +27,19 @@ function Player (options, game){
 	
 	player.items = {};
 	player.armor = {
-		head: null,
-		chest: null,
+		head: ArmorSlot('head'),
+		chest: ArmorSlot('chest'),
 		
-		left_leg: null,
-		right_leg: null,
+		left_leg: ArmorSlot('left_leg'),
+		right_leg: ArmorSlot('right_leg'),
 		
-		left_arm: null,
-		right_arm: null,
+		left_arm: ArmorSlot('left_arm'),
+		right_arm: ArmorSlot('right_arm'),
 		
-		left_wield: null,
-		right_wield: null,
+		left_wield: ArmorSlot('left_wield'),
+		right_wield: ArmorSlot('right_wield'),
 		
-		back: null
+		back: ArmorSlot('back')
 	}
 }
 
@@ -126,22 +140,25 @@ Player.prototype.draw = function (){
 Player.prototype.equipItem = function (itemId, silent){
 	var self = this,
 		id = itemId +'',
-		item = self.items[id];
+		item = self.items[id],
+		s;
 	
 	if(!item || !item.it){
 		!silent && user.warn('You don\'t have item ('+ id +')');
 		return false;
 	}
-	if(!(item.it.armor_space in self.armor)){
+	if(!item.it.isarmor){
 		!silent && user.warn('You cannot equip item ('+ item.it.name +')');
 		return false;
 	}
 	
-	if(self.armor[item.it.armor_space]){
-		self.unequipItem(self.armor[item.it.armor_space].id);
+	for(s in item.it.armor_slots){
+		if(!(s in self.armor)) continue;
+		if(self.armor[s].item){
+			self.unequipItem(self.armor[s].item.id);
+		}
+		self.armor[s].item = item.it;
 	}
-	
-	self.armor[item.it.armor_space] = self.items[id].it;
 	
 	!silent && user.notify( item.it.name +' equipped' );
 }
@@ -155,8 +172,9 @@ Player.prototype.unequipItem = function (itemId, silent){
 		return false;
 	}
 	
-	if(self.armor[item.it.armor_space] == item.it){
-		self.armor[item.it.armor_space] = null;
+	for(s in item.armor_slots){
+		if(!(s in item.armor_slots) || !self.armor[s].item) continue;
+		self.armor[s].item = null;
 	}
 	
 	!silent && user.notify( item.it.name +' unequipped');
@@ -164,11 +182,20 @@ Player.prototype.unequipItem = function (itemId, silent){
 Player.prototype.isEquipped = function (itemId){
 	var self = this,
 		id = itemId +'',
-		item = self.items[id];
+		item = self.items[id],
+		s;
 	
 	if(!item || !item.it) return false;
 	
-	return self.armor[item.it.armor_space] == item.it;
+	for(s in item.armor_slots){
+		console.log('s='+ s);
+		if(!(s in self.armor) || !self.armor[s].item) continue;
+		if(self.armor[s].item.id === id){
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 Player.prototype.addItem = function (itemId, quantity, silent){
