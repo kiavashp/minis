@@ -1,9 +1,114 @@
 window.mobile = 'standalone' in navigator;
 window.addEventListener('load', function (){
 	
+	window.interfacejs = {};
+	
 	if(mobile){
 		document.body.classList.add('mobile');
 	}
+	
+	// START Start Screen
+	(function (){
+		
+		var start_char = document.getElementById('start_characters'),
+			char_table = start_char.querySelector('.character-table'),
+			char_list = document.getElementById('character_list'),
+			char_ctrls = start_char.querySelector('.character-ctrls'),
+			active_char;
+		
+		char_table.addEventListener('click', function (ev){
+			var target = ev.target || ev.targetElement || ev.srcElement,
+				char_id;
+			
+			while(target && target.nodeName != 'TR'){
+				target = target.parentNode;
+				if(!target || target === char_table || !target.nodeName) return;
+			}
+			
+			char_id = target.getAttribute('data-char-id');
+			
+			if(active_char){
+				active_char.classList.remove('active');
+			}
+			
+			if(!char_id){
+				char_ctrls.classList.remove('show');
+				return;
+			}
+			
+			target.classList.add('active');
+			active_char = target;
+			
+			char_ctrls.setAttribute('data-char-id', char_id);
+			
+			char_ctrls.classList.add('show');
+			
+		});
+		
+		char_ctrls.addEventListener('click', function (ev){
+			var target = ev.target || ev.targetElement || ev.srcElement,
+				char_id = char_ctrls.getAttribute('data-char-id'),
+				action;
+			
+			if(!char_id) return;
+			
+			while(target && !target.classList.contains('char-ctrl')){
+				target = target.parentNode;
+				if(!target || target === char_ctrls || !target.classList) return;
+			}
+			
+			action = target.getAttribute('data-char-act');
+			
+			if(action == 'delete'){
+				
+				g.deleteCharacter(char_id);
+				
+				interfacejs.refreshCharacterList();
+				
+				console.log('deleted character: '+ char_id);
+				
+			}else if(action == 'load'){
+				
+				g.loadCharacter(char_id);
+				g.emit('start');
+				document.body.setAttribute('data-screen', 'game');
+				
+				console.log('loading character: '+ char_id);
+				
+			}
+			
+		});
+		
+		setTimeout(function (){
+			start_char.classList.add('in');
+			setTimeout(function (){
+				start_char.classList.add('show');
+				setTimeout(function (){
+					start_char.classList.add('raise');
+				}, 400);
+			}, 1000);
+		}, 0);
+		
+		interfacejs.refreshCharacterList = function (){
+			var c, chars = storage.getJSON('players'),
+				h = [];
+		
+			for(c in chars){
+				if(h.length > 3) break;
+				h.push('<tr data-char-id="'+ c +'">'+
+					'<td>'+ chars[c].name +'</td>'+
+					'<td>'+ chars[c].stats.lvl +'</td>'+
+					'<td>'+ '00:00' +'</td>'+
+					'</tr>');
+			}
+		
+			char_list.innerHTML = h.join('');
+		}
+		
+		interfacejs.refreshCharacterList();
+		
+	}());
+	// END Start Screen
 	
 	// START Touch Controls
 	var touch_ctrl = document.getElementById('touch-ctrl'),
@@ -23,7 +128,14 @@ window.addEventListener('load', function (){
 	// END Touch Controls
 	
 	// START Player Stats
-	var player_stats = document.getElementById('player-stats');
+	var player_stats = document.getElementById('player-stats'),
+		lvl_stat = player_stats.querySelector('.stat-lvl'),
+		lvl_stat_bar,
+		hp_stat = player_stats.querySelector('.stat-hp'),
+		hp_stat_bar;
+	
+	if(lvl_stat) lvl_stat_bar = lvl_stat.querySelector('.bar');
+	if(hp_stat) hp_stat_bar = hp_stat.querySelector('.bar');
 	
 	player_stats.addEventListener('click', function (ev){
 		var target = ev.target || ev.targetElement || ev.srcElement;
@@ -41,6 +153,26 @@ window.addEventListener('load', function (){
 		
 		
 	});
+	
+	interfacejs.updateStats = function (){
+		var p = g.player,
+			lvlinfo;
+		if(!p) return;
+		
+		lvlinfo = g.getLevelInfo(p.lvl);
+		
+		if(lvl_stat){
+			lvl_stat.setAttribute('data-stat', p.lvl);
+			lvl_stat.setAttribute('data-stat-alt', p.xp +'/'+ lvlinfo.xp);
+			lvl_stat_bar.style.width = (100*p.xp/lvlinfo.xp) +'%';
+		}
+		
+		if(hp_stat){
+			hp_stat.setAttribute('data-stat', p.hp);
+			hp_stat_bar.style.width = p.hp +'%';
+		}
+		
+	}
 	// END Player Stats
 	
 	// START Inventory
