@@ -199,7 +199,8 @@ window.addEventListener('load', function (){
 	// END Touch Controls
 	
 	// START Player Stats
-	var player_stats = document.getElementById('player-stats'),
+	var player_name = document.getElementById('player-name'),
+		player_stats = document.getElementById('player-stats'),
 		lvl_stat = player_stats.querySelector('.stat-lvl'),
 		lvl_stat_bar,
 		hp_stat = player_stats.querySelector('.stat-hp'),
@@ -231,6 +232,10 @@ window.addEventListener('load', function (){
 		if(!p) return;
 		
 		lvlinfo = g.getLevelInfo(p.lvl);
+		
+		if(player_name){
+			player_name.innerText = p.name;
+		}
 		
 		if(lvl_stat){
 			lvl_stat.setAttribute('data-stat', p.lvl);

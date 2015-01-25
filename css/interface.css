@@ -414,6 +414,21 @@ background:#343842;
 #player-stats .p-stat.stat-hp .bar {
 background:#7f2222;
 }
+
+/* Player Stats :: player name */
+#player-name {
+display: block;
+position: absolute;
+top: 10px;
+left: 230px;
+width: auto;
+height: 30px;
+z-index: 1001;
+font-family: Monaco, Menlo, monospace;
+color: #ffffff;
+text-align: right;
+line-height: 30px;
+}
 /* END Player Stats */
 
 /* START Touch Controls */
