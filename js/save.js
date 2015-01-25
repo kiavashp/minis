@@ -152,9 +152,9 @@ g = g || new EventEmitter;
 	}
 	
 	// mobile safari
-	window.addEventListener('pagehide', function (){
+	window.onpagehide = function (){
 		g.saveCharacter();
-	})
+	}
 	
 	/*
 	window.addEventListener('click', function (){
