@@ -112,6 +112,8 @@ g = g || new EventEmitter;
 			loc: { map: 1, coor: [], flip: false },
 			items: { inv: {}, armor: [] }
 		};
+		for(var i in g.items) players[playername].items.inv[i] = 1;
+		
 		storage.setJSON('players', players);
 		if(typeof interfacejs === 'object' 
 			&& typeof interfacejs.refreshCharacterList === 'function'){
