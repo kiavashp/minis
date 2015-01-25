@@ -56,8 +56,8 @@ g = g || new EventEmitter;
 		}
 		s.items.armor = [];
 		for(a in g.player.armor){
-		  if(g.player.armor[a]){
-			s.items.armor.push(g.player.armor[a].id);
+		  if(g.player.armor[a].item){
+			s.items.armor.push(g.player.armor[a].item.id);
 		  }
 		}
 		
