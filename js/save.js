@@ -134,7 +134,10 @@ g = g || new EventEmitter;
 	}
 	
 	window.addEventListener('click', function (){
-		if(!lastsave || lastsave < Date.now() - 30e3) g.saveCharacter();
+		if(!lastsave || lastsave < Date.now() - 30e3){
+			g.saveCharacter();
+			lastsave = Date.now();
+		}
 	});
 	
 }());
