@@ -47,7 +47,10 @@ window.addEventListener('load', function (){
 		});
 		
 		add_char.addEventListener('click', function (ev){
-			g.createCharacter(prompt('pick a name for your character'));
+			var name = prompt('pick a name for your character');
+			if(name && typeof g.createCharacter === 'function'){
+				g.createCharacter(name);
+			}
 		});
 		
 		char_ctrls.addEventListener('click', function (ev){
