@@ -104,6 +104,7 @@ g = g || new EventEmitter;
 	
 	g.createCharacter = function (playername){
 		if(playername in players) return false;
+		if(Object.keys(players).length > 3) return false;
 		players[playername] = {
 			name: playername,
 			stats: { lvl: 1, xp: 0, hp:100 },
