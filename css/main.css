@@ -19,3 +19,9 @@ position:absolute;
 left:0;
 top:0;
 }
+.screen {
+display:none;
+}
+
+body[data-screen="start"] #start_screen { display:block; }
+body[data-screen="game"] #game_screen { display:block; }
