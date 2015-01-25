@@ -154,19 +154,25 @@ window.addEventListener('load', function (){
 			}, 1000);
 		}, 0);
 		
+		function clocktime (ts){
+			return (ts/36e5|0) +':'+ ('0'+(ts%36e5/60e3|0)).slice(-2);
+		}
+		
+		interfacejs.toClockTime = clocktime;
+		
 		interfacejs.refreshCharacterList = function (){
 			var c, chars = storage.getJSON('players'),
 				h = [];
-		
+			
 			for(c in chars){
 				if(h.length > 3) break;
 				h.push('<tr data-char-id="'+ c +'">'+
 					'<td>'+ chars[c].name +'</td>'+
 					'<td>'+ chars[c].stats.lvl +'</td>'+
-					'<td>'+ '00:00' +'</td>'+
+					'<td>'+ clocktime(+chars[c].playtime) +'</td>'+
 					'</tr>');
 			}
-		
+			
 			char_list.innerHTML = h.join('');
 		}
 		
@@ -233,8 +239,8 @@ window.addEventListener('load', function (){
 		}
 		
 		if(hp_stat){
-			hp_stat.setAttribute('data-stat', p.hp);
-			hp_stat_bar.style.width = p.hp +'%';
+			hp_stat.setAttribute('data-stat', p.hp +'/'+ lvlinfo.hp);
+			hp_stat_bar.style.width = (100*p.hp/lvlinfo.hp) +'%';
 		}
 		
 	}
