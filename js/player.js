@@ -172,8 +172,8 @@ Player.prototype.unequipItem = function (itemId, silent){
 		return false;
 	}
 	
-	for(s in item.armor_slots){
-		if(!(s in item.armor_slots) || !self.armor[s].item) continue;
+	for(s in item.it.armor_slots){
+		if(!(s in self.armor) || !self.armor[s].item) continue;
 		self.armor[s].item = null;
 	}
 	
@@ -187,8 +187,7 @@ Player.prototype.isEquipped = function (itemId){
 	
 	if(!item || !item.it) return false;
 	
-	for(s in item.armor_slots){
-		console.log('s='+ s);
+	for(s in item.it.armor_slots){
 		if(!(s in self.armor) || !self.armor[s].item) continue;
 		if(self.armor[s].item.id === id){
 			return true;
