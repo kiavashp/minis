@@ -95,13 +95,26 @@ g = g || new EventEmitter;
 			}
 		}
 		
+		interfacejs.updateStats();
+		
+		if(!g._running) g.emit('start');
+		
 		return true;
 	}
 	
 	g.createCharacter = function (playername){
 		if(playername in players) return false;
-		players[playername] = {};
+		players[playername] = {
+			name: playername,
+			stats: { lvl: 1, xp: 0, hp:100 },
+			loc: { map: 1, coor: [], flip: false },
+			items: { inv: {}, armor: [] }
+		};
 		storage.setJSON('players', players);
+		if(typeof interfacejs === 'object' 
+			&& typeof interfacejs.refreshCharacterList === 'function'){
+			interfacejs.refreshCharacterList();
+		}
 	}
 	
 	g.deleteCharacter = function (playername){
