@@ -18,15 +18,25 @@ g = g || new EventEmitter;
 	var lastsave = null,
 		players = storage.getJSON('players', {});
 	
+	storage.setJSON('player', players);
+	
+	time_updates = {}
+	
 	g.saveCharacter = function (playername){
 		if(typeof playername === 'undefined'){
 			if(g.player && g.player.name) playername = g.player.name;
 		}
 		if(!(playername in players)) return false;
 		
-		var s = {}, i, a;
+		var d = Date.now(), s = {}, i, a;
 		
 		s.name = playername;
+		
+		players[playername].playtime += time_updates[s.name]?d-time_updates[s.name]:0;
+		time_updates[playername] = d;
+		
+		s.savetime = d;
+		s.playtime = players[playername].playtime;
 		
 		s.stats =  { lvl: null, xp: null, hp: null };
 		s.loc = { map: null, coor: null };
@@ -61,17 +71,27 @@ g = g || new EventEmitter;
 		players = storage.getJSON('players');
 		if(!(playername in players)) return false;
 		
-		var player = players[playername],
+		var d = Date.now(),
+			player = players[playername],
 			popt = {},
-			i, a;
+			i, a, lvlinfo;
 		
 		if(!player.name) player.name = playername;
 		popt.name = player.name;
 		
+		if(!player.playtime) player.playtime = 0;
+		
+		time_updates[player.name] = d;
+		
 		if(typeof player.stats == 'object'){
-			if(typeof player.stats.lvl === 'number') popt.lvl = player.stats.lvl;
+			if(typeof player.stats.lvl === 'number'){
+				popt.lvl = player.stats.lvl;
+				lvlinfo = g.getLevelInfo(popt.lvl);
+			}
 			if(typeof player.stats.xp === 'number') popt.xp = player.stats.xp;
-			if(typeof player.stats.hp === 'number') popt.hp = player.stats.hp;
+			if(typeof player.stats.hp === 'number'){
+				popt.hp =  Math.min(player.stats.hp, lvlinfo.hp);
+			}
 		}
 		
 		if(typeof player.loc === 'object'){
@@ -98,8 +118,6 @@ g = g || new EventEmitter;
 		}
 		
 		interfacejs.updateStats();
-		
-		if(!g._running) g.emit('start');
 		
 		return true;
 	}
