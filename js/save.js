@@ -151,11 +151,18 @@ g = g || new EventEmitter;
 		g.saveCharacter();
 	}
 	
+	// mobile safari
+	window.addEventListener('pagehide', function (){
+		g.saveCharacter();
+	})
+	
+	/*
 	window.addEventListener('click', function (){
 		if(!lastsave || lastsave < Date.now() - 15e3){
 			g.saveCharacter();
 			lastsave = Date.now();
 		}
 	});
+	*/
 	
 }());
