@@ -225,6 +225,7 @@ bottom:10px;
 color:#444444;
 outline:none;
 cursor:default;
+z-index:1;
 }
 #finish_add_char {
 display:none;
@@ -333,7 +334,21 @@ height:30px;
 body.mobile #add_char:active {
 background-position-y:35px;
 }
-/* mobile styles ent */
+body.mobile #add_char_name{
+font-size:16px;
+border-radius:0;
+margin:0;
+top:0;
+width:230px;
+height:30px;
+}
+body.mobile #finish_add_char{
+top:0;
+right:0;
+bottom:0;
+line-height:30px;
+}
+/* mobile styles end */
 /* END Start Screen */
 
 /* START Player Stats */
