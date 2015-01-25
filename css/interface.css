@@ -109,6 +109,7 @@ padding:0 10px;
 height:60px;
 line-height:60px;
 font-size:28px;
+cursor:default;
 }
 .start_characters_content .character-table-shadow {
 position:absolute;
@@ -194,16 +195,50 @@ border-color:#cccccc;
 }
 #add_char {
 display:block;
-position:relative;
+position:absolute;
+top:0;
+right:0;
 width:60px;
 height:60px;
-float:right;
 background-image:url('../assets/interface/ctrl-buttons.png');
 background-size:auto 120px;
 background-position:-270px 0px;
+cursor:default;
 }
 #add_char:active {
 background-position-y:60px;
+}
+#add_char_name {
+display:none;
+font-family:inherit;
+-webkit-appearance:none;
+background:#ffffff;
+margin-left:12px;
+border:none;
+padding:10px;
+font-size:18px;
+width:378px;
+position:absolute;
+left:0;
+top:10px;
+bottom:10px;
+color:#444444;
+outline:none;
+cursor:default;
+}
+#finish_add_char {
+display:none;
+width:80px;
+position:absolute;
+right:10px;
+top:10px;
+bottom:10px;
+z-index:1;
+background:#bbbbbb;
+text-align:center;
+line-height:40px;
+font-size:16px;
+cursor:default;
 }
 /* mobile styles start */
 body.mobile #start_screen:before {

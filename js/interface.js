@@ -15,6 +15,8 @@ window.addEventListener('load', function (){
 			char_list = document.getElementById('character_list'),
 			char_ctrls = start_char.querySelector('.character-ctrls'),
 			add_char = document.getElementById('add_char'),
+			add_char_name = document.getElementById('add_char_name'),
+			finish_add_char = document.getElementById('finish_add_char'),
 			active_char;
 		
 		char_table.addEventListener('click', function (ev){
@@ -46,10 +48,50 @@ window.addEventListener('load', function (){
 			
 		});
 		
+		if(Object.keys(storage.getJSON('players', {})).length > 3){
+			add_char.style.display = 'none';
+		}else{
+			add_char.style.display = 'block';
+		}
+		
 		add_char.addEventListener('click', function (ev){
-			var name = prompt('pick a name for your character');
-			if(name && typeof g.createCharacter === 'function'){
+			add_char_name.style.display = 'block';
+			finish_add_char.style.display = 'block';
+			
+			active_char && active_char.classList.remove('active');
+			char_ctrls.classList.remove('show');
+			active_char = null;
+			
+			add_char_name.focus();
+		});
+		
+		add_char_name.addEventListener('keyup', function (ev){
+			var self = this, value = self.value.trim();
+			if(value.length < 1){
+				finish_add_char.innerText = 'CANCEL';
+			}else{
+				finish_add_char.innerText = 'CREATE';
+			}
+			if(ev.keyCode == 13){
+				typeof finish_add_char.click == 'function' && finish_add_char.click();
+			}
+		});
+		
+		finish_add_char.addEventListener('click', function (ev){
+			var name = add_char_name && (add_char_name.value||'').trim();
+			if(name && name.length > 0){
 				g.createCharacter(name);
+				interfacejs.refreshCharacterList();
+				add_char_name.value = '';
+				finish_add_char.innerText = 'CANCEL';
+			}
+			add_char_name.style.display = 'none';
+			finish_add_char.style.display = 'none';
+			
+			if(Object.keys(storage.getJSON('players', {})).length > 3){
+				add_char.style.display = 'none';
+			}else{
+				add_char.style.display = 'block';
 			}
 		});
 		
@@ -73,7 +115,17 @@ window.addEventListener('load', function (){
 				
 				interfacejs.refreshCharacterList();
 				
+				active_char && active_char.classList.remove('active');
+				char_ctrls.classList.remove('show');
+				active_char = null;
+				
 				console.log('deleted character: '+ char_id);
+				
+				if(Object.keys(storage.getJSON('players', {})).length > 3){
+					add_char.style.display = 'none';
+				}else{
+					add_char.style.display = 'block';
+				}
 				
 			}
 			else if(action == 'load'){
@@ -81,6 +133,10 @@ window.addEventListener('load', function (){
 				g.loadCharacter(char_id);
 				g.emit('start');
 				document.body.setAttribute('data-screen', 'game');
+				
+				active_char && active_char.classList.remove('active');
+				char_ctrls.classList.remove('show');
+				active_char = null;
 				
 				console.log('loading character: '+ char_id);
 				

@@ -52,6 +52,7 @@ g = g || new EventEmitter;
 		
 		players[playername] = s;
 		storage.setJSON('players', players);
+		interfacejs.refreshCharacterList();
 		return true;
 	}
 	
@@ -122,6 +123,7 @@ g = g || new EventEmitter;
 		if(!(playername in players)) return false;
 		delete players[playername];
 		storage.setJSON('players', players);
+		interfacejs.refreshCharacterList();
 	}
 	
 }());
