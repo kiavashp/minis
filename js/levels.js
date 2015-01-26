@@ -107,7 +107,7 @@ g = g || new EventEmitter;
 	
 	g.getLevelInfo = function (lvl){
 		if(typeof lvl !== 'number') return false;
-		if(lvl < 1 || lvl >= levels.length) return false;
+		if(lvl < 1 || lvl > levels.length) return false;
 		
 		var l = levels[lvl-1],
 			k, o = {};
