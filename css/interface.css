@@ -426,8 +426,9 @@ height: 30px;
 z-index: 1001;
 font-family: Monaco, Menlo, monospace;
 color: #ffffff;
-text-align: right;
+text-align: left;
 line-height: 30px;
+padding-right:8px;
 }
 /* END Player Stats */
 
