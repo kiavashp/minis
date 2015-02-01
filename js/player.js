@@ -28,6 +28,8 @@ function Player (options, game){
 	player.items = {};
 	player.armor = {
 		head: ArmorSlot('head'),
+		behind_head: ArmorSlot('behind_head'),
+		
 		chest: ArmorSlot('chest'),
 		
 		left_leg: ArmorSlot('left_leg'),
@@ -106,6 +108,9 @@ Player.prototype.draw = function (){
 	}else if(sequence == 'idle'){
 		player.frame = (player.frame / 4 | 0) % 2;
 	}
+	
+	if(player.armor.behind_head)
+		player.armor.behind_head.draw(_, sequence, player.frame, x, y, flip);
 	
 	// player arm_left
 	game.sprites['blue_'+ sequence +'_arm_left'].draw(_, player.frame, x, y, flip);
