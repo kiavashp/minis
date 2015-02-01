@@ -52,6 +52,7 @@ g.additem(
 	'001', "Grey Hood", {
 		isarmor: true,
 		armor_slots: {
+			behind_head: null,
 			head: {
 				'idle': g.sprites['grey_idle_hood'],
 				'run': g.sprites['grey_run_hood'],
@@ -63,6 +64,7 @@ g.additem(
 	'002', "White Bandana", {
 		isarmor: true,
 		armor_slots: {
+			behind_head: null,
 			head: {
 				'idle': g.sprites['white_idle_bandana'],
 				'run': g.sprites['white_run_bandana'],
@@ -74,6 +76,7 @@ g.additem(
 	'003', "Gold Crown", {
 		isarmor: true,
 		armor_slots: {
+			behind_head: null,
 			head: {
 				'idle': g.sprites['gold_idle_crown'],
 				'run': g.sprites['gold_run_crown'],
@@ -134,6 +137,22 @@ g.additem(
 				'idle': g.sprites['red_idle_book'],
 				'run': g.sprites['red_run_book'],
 				'fall': g.sprites['red_fall_book']
+			}
+		}
+	})(
+	
+	'009', "Dark Mage Hat", {
+		isarmor: true,
+		armor_slots: {
+			behind_head: {
+				'idle': g.sprites['dark_idle_magehat_behind'],
+				'run': g.sprites['dark_run_magehat_behind'],
+				'fall': g.sprites['dark_fall_magehat_behind']
+			},
+			head: {
+				'idle': g.sprites['dark_idle_magehat'],
+				'run': g.sprites['dark_run_magehat'],
+				'fall': g.sprites['dark_fall_magehat']
 			}
 		}
 	});

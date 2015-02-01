@@ -169,6 +169,18 @@ g.addsprite(
 	"red_idle_book", {
 		image: g.image("./assets/offhand/misc/red_book.png"),
 		frames: g.sprite_frames.IDLE
+	})(
+	
+	// dark magehat behind
+	"dark_idle_magehat_behind", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.IDLE_MV(0,200,3,-10)
+	})(
+	
+	// dark magehat
+	"dark_idle_magehat", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.IDLE_MV(0,0,0,-10)
 	});
 
 // run sprites
@@ -254,6 +266,18 @@ g.addsprite(
 	"red_run_book", {
 		image: g.image("./assets/offhand/misc/red_book.png"),
 		frames: g.sprite_frames.RUN
+	})(
+	
+	// dark magehat behind
+	"dark_run_magehat_behind", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.RUN_MV(0,200,3,-10)
+	})(
+	
+	// dark magehat
+	"dark_run_magehat", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.RUN_MV(0,0,0,-10)
 	});
 
 // fall sprites
@@ -336,5 +360,17 @@ g.addsprite(
 	"red_fall_book", {
 		image: g.image("./assets/offhand/misc/red_book.png"),
 		frames: g.sprite_frames.FALL
+	})(
+	
+	// dark magehat behind
+	"dark_fall_magehat_behind", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.FALL_MV(0,200,3,-10)
+	})(
+	
+	// dark magehat
+	"dark_fall_magehat", {
+		image: g.image("./assets/armor/cloth/dark_magehat.png"),
+		frames: g.sprite_frames.FALL_MV(0,0,0,-10)
 	});
 
