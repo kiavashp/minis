@@ -1,11 +1,12 @@
 window.mobile = 'standalone' in navigator;
-window.addEventListener('load', function (){
-	
-	window.interfacejs = {};
-	
+document.addEventListener('DOMContentLoaded', function (){
 	if(mobile){
 		document.body.classList.add('mobile');
 	}
+});
+window.addEventListener('load', function (){
+	
+	window.interfacejs = {};
 	
 	// START Start Screen
 	(function (){
