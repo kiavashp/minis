@@ -2,11 +2,11 @@
 
 function Actor (o, game){
 	if(!(this instanceof Actor))
-		return new Actor(o);
+		return new Actor(o, game);
 	o = typeof o === 'object' ? o : {};
 	var actor = this;
 	actor.game = game || o.game || Actor.def_game;
-	actor.name = o.name || 'noname';
+	actor.name = o.name || ('noname' + Date.now());
 	actor.lvl = o.lvl || 1;
 	actor.hp = o.hp || 100;
 	actor.speed = { x: 0, y: 0 };
