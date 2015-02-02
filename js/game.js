@@ -22,7 +22,7 @@ g.map = {
 
 /* START to be in g.map */
 map_img = new Image;
-map_img.src = './assets/map/001.png';
+map_img.src = './assets/map/001_sml.png';
 
 g.w = 3000;
 g.h = 2000;
@@ -108,7 +108,7 @@ g.on('draw', function (){
 	
 	game._.drawImage(map_img, 
 		0, 0, map_img.width, map_img.height, 
-		game.frame.x, game.frame.y-2e3+game.frame.h, map_img.width/2, map_img.height/2
+		game.frame.x, game.frame.y-500+game.frame.h, map_img.width/4, map_img.height/4
 	);
 	
 	/* END to be replaced with g.map.draw(game.frame.x, game.frame.y) */
