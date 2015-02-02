@@ -101,6 +101,12 @@ g.on('draw', function (){
 	/* START to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 //	game._.fillStyle = '#6B6249';
 //	game._.fillRect(0, 0, game.w, game.h);
+	// sky
+	game._.fillStyle = '#D0E6ED';
+	game._.fillRect(0, 0, game.frame.w, game.frame.h);
+	// ground
+	game._.fillStyle = '#675B4C';
+	game._.fillRect(0, game.frame.y + game.ground - 5, game.frame.w, game.frame.h);
 	
 //	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
 	
@@ -113,7 +119,7 @@ g.on('draw', function (){
 	*/
 	
 	game._.drawImage(map_img, 
-		-game.frame.x * 4, map_img.height-game.frame.h * 4, game.frame.w * 4, game.frame.h * 4, 
+		-game.frame.x * 2, map_img.height-game.frame.h * 2, game.frame.w * 2, game.frame.h * 2, 
 		0, 0, game.frame.w, game.frame.h
 	);
 	
