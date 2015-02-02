@@ -22,7 +22,7 @@ g.map = {
 
 /* START to be in g.map */
 map_img = new Image;
-map_img.src = './assets/map/001_2x.png';
+map_img.src = './assets/map/001.png';
 
 g.w = 3000;
 g.h = 2000;
