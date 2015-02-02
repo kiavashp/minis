@@ -21,6 +21,9 @@ g.map = {
 */
 
 /* START to be in g.map */
+map_img = new Image;
+map_img.src = './assets/map/001.png';
+
 g.w = 3000;
 g.h = 2000;
 
@@ -139,8 +142,6 @@ w.on('DOMContentLoaded', function (){
 	g._ = g.context = g.c.getContext('2d');
 	
 	/* START to be in g.map */
-	map_img = new Image;
-	map_img.src = './assets/map/001.png';
 	ground_img = new Image;
 	ground_img.src = './assets/scene/ground.png';
 	/* END to be in g.map */
