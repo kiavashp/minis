@@ -22,7 +22,7 @@ g.map = {
 
 /* START to be in g.map */
 map_img = new Image;
-map_img.src = './assets/map/001_sml.png';
+map_img.src = './assets/map/001_2x.png';
 
 g.w = 3000;
 g.h = 2000;
@@ -96,7 +96,7 @@ g.on('update', function (){
 g.on('draw', function (){
 	var a, game = this;
 	game._.setTransform(cnst.pixelratio, 0, 0, cnst.pixelratio, 0, 0);
-	game._.clearRect(0, 0, game.w, game.h);
+//	game._.clearRect(0, 0, game.w, game.h);
 	
 	/* START to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 //	game._.fillStyle = '#6B6249';
@@ -105,10 +105,16 @@ g.on('draw', function (){
 //	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
 	
 //	game._.drawImage(map_img, game.frame.x, game.frame.y + game.frame.h, 10000, 4000, 0, 0, 5000, 2000);
-	
+	/*
 	game._.drawImage(map_img, 
 		0, 0, map_img.width, map_img.height, 
-		game.frame.x, game.frame.y-500+game.frame.h, map_img.width/4, map_img.height/4
+		game.frame.x, game.frame.y-1e3+game.frame.h, 3e3, 1e3
+	);
+	*/
+	
+	game._.drawImage(map_img, 
+		-game.frame.x * 4, map_img.height-game.frame.h * 4, game.frame.w * 4, game.frame.h * 4, 
+		0, 0, game.frame.w, game.frame.h
 	);
 	
 	/* END to be replaced with g.map.draw(game.frame.x, game.frame.y) */
