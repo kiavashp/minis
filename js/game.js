@@ -9,6 +9,7 @@ g.keys = {};
 
 /*
 g.map = {
+	id: '001'
 	w: 3000,
 	h: 2000,
 	gravity: 1,
@@ -95,10 +96,13 @@ g.on('draw', function (){
 //	game._.clearRect(0, 0, game.w, game.h);
 	
 	/* START to be replaced with g.map.draw(game.frame.x, game.frame.y) */
-	game._.fillStyle = '#6B6249';
-	game._.fillRect(0, 0, game.w, game.h);
+//	game._.fillStyle = '#6B6249';
+//	game._.fillRect(0, 0, game.w, game.h);
 	
-	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
+//	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
+	
+	game._.drawImage(map_img, game.frame.x, game.frame.y - 2000 + game.frame.h, 5000, 2000);
+	
 	/* END to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 	
 	for(a=0;a<game.actors.length;a++) game.actors[a].draw();
@@ -129,8 +133,12 @@ w.on('DOMContentLoaded', function (){
 	g.c = can;
 	g._ = g.context = g.c.getContext('2d');
 	
+	/* START to be in g.map */
+	map_img = new Image;
+	map_img.src = './assets/map/001.png';
 	ground_img = new Image;
 	ground_img.src = './assets/scene/ground.png';
+	/* END to be in g.map */
 	
 	var a = 'ackingStorePixelRatio', b = 'equestAnimationFrame', c = 'ancelAnimationFrame';
 	cnst.pixelratio = (w.devicePixelRatio||1)/(g._['webkitB'+a]||g._['mozB'+a]||1);
