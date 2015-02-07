@@ -2,6 +2,8 @@ g = g || new EventEmitter;
 
 (function (){
 	
+	var colors = {black:1,blue:1,brown:1,green:1,red:1,white:1};
+	
 	window.storage = {};
 	storage.getJSON = function (item, def){
 		var j = def, d = localStorage.getItem(item);
@@ -31,6 +33,7 @@ g = g || new EventEmitter;
 		var d = Date.now(), s = {}, i, a;
 		
 		s.name = playername;
+		s.color = g.player.color in colors ? g.player.color : 'blue';
 		
 		players[playername].playtime += time_updates[s.name]?d-time_updates[s.name]:0;
 		time_updates[playername] = d;
@@ -78,6 +81,8 @@ g = g || new EventEmitter;
 		
 		if(!player.name) player.name = playername;
 		popt.name = player.name;
+		
+		popt.color = player.color in colors ? player.color : 'blue';
 		
 		if(!player.playtime) player.playtime = 0;
 		

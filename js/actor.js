@@ -7,6 +7,7 @@ function Actor (o, game){
 	var actor = this;
 	actor.game = game || o.game || Actor.def_game;
 	actor.name = o.name || ('noname' + Date.now());
+	actor.color = (o.color || 'blue') +'';
 	actor.lvl = o.lvl || 1;
 	actor.hp = o.hp || 100;
 	actor.speed = { x: 0, y: 0 };
@@ -21,10 +22,6 @@ function Actor (o, game){
 	actor._frame = 0;
 	actor.frame = 0;
 	actor.lastupdate = Date.now();
-	if(typeof actor.sprite !== 'undefined'){
-		actor.sprite = o.sprite instanceof Sprite ? o.sprite
-			: g.sprites[o.sprite +''];
-	}
 }
 
 Actor.bind = function (game){

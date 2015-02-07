@@ -88,40 +88,99 @@ g.sprite_frames = {
 	] },
 };
 g.sprites = {};
-g.addsprite = function (name, sprite){
+g.addsprite = function addSprite (name, sprite){
 	sprite.name = name;
 	g.sprites[name] = new Sprite(sprite);
 	return g.addsprite.bind(g);
 }
+g.addcharactersprite = function addCharacterSprite (color){
+	g.addsprite(
+		// idle sprites
+		color +"_idle_head", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE
+		})(
+		color +"_idle_chest", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE_MV(0,200)
+		})(
+		color +"_idle_arm_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE_MV(0,400)
+		})(
+		color +"_idle_arm_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE_MV(0,600)
+		})(
+		color +"_idle_leg_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE_MV(0,800)
+		})(
+		color +"_idle_leg_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.IDLE_MV(0,1000)
+		})(
+		// run sprites
+		color +"_run_head", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN
+		})(
+		color +"_run_chest", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN_MV(0,200)
+		})(
+		color +"_run_arm_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN_MV(0,400)
+		})(
+		color +"_run_arm_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN_MV(0,600)
+		})(
+		color +"_run_leg_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN_MV(0,800)
+		})(
+		color +"_run_leg_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.RUN_MV(0,1000)
+		})(
+		// fall sprites
+		color +"_fall_head", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL
+		})(
+		color +"_fall_chest", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL_MV(0,200)
+		})(
+		color +"_fall_arm_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL_MV(0,400)
+		})(
+		color +"_fall_arm_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL_MV(0,600)
+		})(
+		color +"_fall_leg_left", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL_MV(0,800)
+		})(
+		color +"_fall_leg_right", {
+			image: g.image("./assets/character/"+ color +".png"),
+			frames: g.sprite_frames.FALL_MV(0,1000)
+		});
+}
+
+g.addcharactersprite('blue');
+g.addcharactersprite('white');
+g.addcharactersprite('red');
+g.addcharactersprite('brown');
+g.addcharactersprite('green');
+g.addcharactersprite('black');
 
 // idle sprites
 g.addsprite(
-	
-	// blue character
-	"blue_idle_head", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE
-	})(
-	"blue_idle_chest", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MV(0,200)
-	})(
-	"blue_idle_arm_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MV(0,400)
-	})(
-	"blue_idle_arm_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MV(0,600)
-	})(
-	"blue_idle_leg_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MV(0,800)
-	})(
-	"blue_idle_leg_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.IDLE_MV(0,1000)
-	})(
 	
 	// grey hood
 	"grey_idle_hood", {
@@ -171,13 +230,11 @@ g.addsprite(
 		frames: g.sprite_frames.IDLE
 	})(
 	
-	// dark magehat behind
+	// dark magehat
 	"dark_idle_magehat_behind", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.IDLE_MV(0,200,3,-10)
 	})(
-	
-	// dark magehat
 	"dark_idle_magehat", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.IDLE_MV(0,0,0,-10)
@@ -185,30 +242,6 @@ g.addsprite(
 
 // run sprites
 g.addsprite(
-	"blue_run_head", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN
-	})(
-	"blue_run_chest", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MV(0,200)
-	})(
-	"blue_run_arm_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MV(0,400)
-	})(
-	"blue_run_arm_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MV(0,600)
-	})(
-	"blue_run_leg_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MV(0,800)
-	})(
-	"blue_run_leg_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.RUN_MV(0,1000)
-	})(
 	
 	// grey hood
 	"grey_run_hood", {
@@ -268,13 +301,11 @@ g.addsprite(
 		frames: g.sprite_frames.RUN
 	})(
 	
-	// dark magehat behind
+	// dark magehat
 	"dark_run_magehat_behind", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.RUN_MV(0,200,3,-10)
 	})(
-	
-	// dark magehat
 	"dark_run_magehat", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.RUN_MV(0,0,0,-10)
@@ -282,32 +313,6 @@ g.addsprite(
 
 // fall sprites
 g.addsprite(
-	
-	// blue character
-	"blue_fall_head", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL
-	})(
-	"blue_fall_chest", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MV(0,200)
-	})(
-	"blue_fall_arm_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MV(0,400)
-	})(
-	"blue_fall_arm_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MV(0,600)
-	})(
-	"blue_fall_leg_left", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MV(0,800)
-	})(
-	"blue_fall_leg_right", {
-		image: g.image("./assets/character/blue.png"),
-		frames: g.sprite_frames.FALL_MV(0,1000)
-	})(
 	
 	// grey hood
 	"grey_fall_hood", {
@@ -362,15 +367,12 @@ g.addsprite(
 		frames: g.sprite_frames.FALL
 	})(
 	
-	// dark magehat behind
+	// dark magehat
 	"dark_fall_magehat_behind", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.FALL_MV(0,200,3,-10)
 	})(
-	
-	// dark magehat
 	"dark_fall_magehat", {
 		image: g.image("./assets/armor/cloth/dark_magehat.png"),
 		frames: g.sprite_frames.FALL_MV(0,0,0,-10)
 	});
-

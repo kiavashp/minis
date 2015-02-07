@@ -113,21 +113,21 @@ Player.prototype.draw = function (){
 		player.armor.behind_head.draw(_, sequence, player.frame, x, y, flip);
 	
 	// player arm_left
-	game.sprites['blue_'+ sequence +'_arm_left'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_arm_left'].draw(_, player.frame, x, y, flip);
 	// player leg_left
-	game.sprites['blue_'+ sequence +'_leg_left'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_leg_left'].draw(_, player.frame, x, y, flip);
 	// armor right_wield
 	if(player.armor.left_wield)
 		player.armor.left_wield.draw(_, sequence, player.frame, x, y, flip);
 	// player chest
-	game.sprites['blue_'+ sequence +'_chest'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_chest'].draw(_, player.frame, x, y, flip);
 	// armor chest
 	if(player.armor.chest)
 		player.armor.chest.draw(_, sequence, player.frame, x, y, flip);
 	// player leg_right
-	game.sprites['blue_'+ sequence +'_leg_right'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_leg_right'].draw(_, player.frame, x, y, flip);
 	// player head
-	game.sprites['blue_'+ sequence +'_head'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_head'].draw(_, player.frame, x, y, flip);
 	// armor head
 	if(player.armor.head)
 		player.armor.head.draw(_, sequence, player.frame, x, y, flip);
@@ -135,7 +135,7 @@ Player.prototype.draw = function (){
 	if(player.armor.right_wield)
 		player.armor.right_wield.draw(_, sequence, player.frame, x, y, flip);
 	// player arm_right
-	game.sprites['blue_'+ sequence +'_arm_right'].draw(_, player.frame, x, y, flip);
+	game.sprites[player.color +'_'+ sequence +'_arm_right'].draw(_, player.frame, x, y, flip);
 	// armor arm_right
 	if(player.armor.right_arm)
 		player.armor.right_arm.draw(_, sequence, player.frame, x, y, flip);
