@@ -24,8 +24,8 @@ g.map = {
 map_img = new Image;
 map_img.src = './assets/map/001.png';
 
-g.w = 3000;
-g.h = 2000;
+g.w = 2000;
+g.h = 1000;
 
 g.gravity = 1;
 g.groundheight = 70;
@@ -102,27 +102,22 @@ g.on('draw', function (){
 //	game._.fillStyle = '#6B6249';
 //	game._.fillRect(0, 0, game.w, game.h);
 	// sky
-	game._.fillStyle = '#D0E6ED';
+	game._.fillStyle = '#869291' || '#D0E6ED';
 	game._.fillRect(0, 0, game.frame.w, game.frame.h);
 	// ground
 	game._.fillStyle = '#675B4C';
 	game._.fillRect(0, game.frame.y + game.ground - 5, game.frame.w, game.frame.h);
 	
 //	game._.drawImage(ground_img, game.frame.x, game.frame.y + game.ground - 5);
-	
-//	game._.drawImage(map_img, game.frame.x, game.frame.y + game.frame.h, 10000, 4000, 0, 0, 5000, 2000);
 	/*
-	game._.drawImage(map_img, 
-		0, 0, map_img.width, map_img.height, 
-		game.frame.x, game.frame.y-1e3+game.frame.h, 3e3, 1e3
-	);
-	*/
-	
 	game._.drawImage(map_img, 
 		-game.frame.x * 2, map_img.height-game.frame.h * 2, game.frame.w * 2, game.frame.h * 2, 
 		0, 0, game.frame.w, game.frame.h
 	);
-	
+	*/
+	game._.drawImage(map_img, game.frame.x, 
+		game.frame.h - map_img.height / 2, 
+		map_img.width / 2, map_img.height / 2);
 	/* END to be replaced with g.map.draw(game.frame.x, game.frame.y) */
 	
 	for(a=0;a<game.actors.length;a++) game.actors[a].draw();
